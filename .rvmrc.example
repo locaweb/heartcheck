@@ -1,0 +1,2 @@
+rvm 1.9.3@heart-check --create
+rvm_install_on_use_flag=1

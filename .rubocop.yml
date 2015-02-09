@@ -1,0 +1,14 @@
+Documentation:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
+  Enabled: false
+
+Style/Encoding:
+  Enabled: false
+
+AllCops:
+  # Include gemspec and Rakefile
+  Include:
+    - '**/*.gemspec'
+    - '**/Rakefile'
