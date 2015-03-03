@@ -1,0 +1,1 @@
+require "heartcheck/generators/generator"

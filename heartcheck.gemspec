@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = 'A simple way to check your app heart.'
   spec.license =  'MIT'
 
-  spec.files = Dir['lib/**/*'].select { |f| File.file?(f) }
+  spec.files = Dir['lib/**/*'].select { |f| File.file?(f) } << "bin/heartcheck"
   spec.test_files = spec.files.grep(/^spec\//)
   spec.executables = Dir['bin/*']
     .flat_map { |f| f.split("\n").map { |file| File.basename(file) } }

@@ -3,7 +3,9 @@
 require 'rubygems'
 require 'optparse'
 $LOAD_PATH.push File.expand_path('../../lib', __FILE__)
+
 require 'heartcheck'
+require 'heartcheck/generators'
 
 optparse = OptionParser.new do |opts|
   opts.banner = "Usage: heartcheck (rails|padrino|sinatra)\n\nYou can use flags as such:"
