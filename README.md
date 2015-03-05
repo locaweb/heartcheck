@@ -1,6 +1,8 @@
 Heartcheck
 ==============
 
+[![Build Status](https://travis-ci.org/locaweb/heartcheck.svg)](https://travis-ci.org/locaweb/heartcheck)
+
 Check your applications' heart.
 
 About
