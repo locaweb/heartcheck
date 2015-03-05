@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
     .flat_map { |f| f.split("\n").map { |file| File.basename(file) } }
   spec.require_paths = %w(lib)
 
-  spec.add_runtime_dependency 'rack', '~> 1.6.0', '>= 1.6.0'
+  spec.add_runtime_dependency 'rack', '~> 1', '>= 1.4.0'
   spec.add_runtime_dependency 'oj', '~> 2.11.0', '>= 2.11.4'
 
   spec.add_development_dependency 'pry-nav', '~> 0.2.0', '>= 0.2.4'
