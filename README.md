@@ -57,7 +57,7 @@ https://github.com/locaweb/heartcheck/wiki/Endpoint-Json
 ## How to use
 
 You can see how to use in template that is generated when install:
-https://github.com/locaweb/heartcheck/blob/master/lib/generators/templates/config.rb
+https://github.com/locaweb/heartcheck/blob/master/lib/heartcheck/generators/templates/config.rb
 
 ## Git tags
 
