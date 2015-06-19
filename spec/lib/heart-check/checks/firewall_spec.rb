@@ -69,7 +69,7 @@ describe Heartcheck::Checks::Firewall do
           expect(Net::Telnet).to receive(:new).and_raise Timeout::Error.new
           subject.validate
 
-          expect(subject.instance_variable_get(:@errors)).to eq(['connection refused on: lala.com:443'])
+          expect(subject.instance_variable_get(:@errors)).to eq(['connection refused on: lala.com:443 via proxy: uriproxy.com.br:8888'])
         end
       end
     end
