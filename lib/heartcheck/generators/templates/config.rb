@@ -64,4 +64,10 @@ Heartcheck.setup do |monitor|
   monitor.add :cache do |c|
     c.add_service(name: 'memcached', connection: Rails.cache.instance_variable_get('@data'))
   end
+
+  # WatchFile
+  # check if a preloaded file as changed from the disk
+  monitor.add :watch_file do |c|
+    c.add_service(file: 'version.json')
+  end
 end
