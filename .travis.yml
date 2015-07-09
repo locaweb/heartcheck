@@ -8,4 +8,4 @@ rvm:
   - "2.2.2"
 install: bundle install -j 4 --retry 3
 script:
-  - RAILS_ENV=test bundle exec rspec spec
+  - bin/rspec

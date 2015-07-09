@@ -12,11 +12,10 @@ Gem::Specification.new do |spec|
   spec.description = 'A simple way to check your app heart.'
   spec.license =  'MIT'
 
-  spec.files = Dir['lib/**/*'].select { |f| File.file?(f) } << "bin/heartcheck"
-  spec.test_files = spec.files.grep(/^spec\//)
-  spec.executables = Dir['bin/*']
-    .flat_map { |f| f.split("\n").map { |file| File.basename(file) } }
-  spec.require_paths = %w(lib)
+  spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.bindir = "exe"
+  spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency 'rack', '~> 1', '>= 1.4.0'
   spec.add_runtime_dependency 'oj'
@@ -27,6 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'thor', '~> 0.19.0', '>= 0.19.1'
   spec.add_development_dependency 'rack-test', '~> 0.6.0', '>= 0.6.3'
   # for documentation
-  spec.add_development_dependency 'yard', '~> 0.8.0', '>= 0.8.7'
-  spec.add_development_dependency 'redcarpet', '~> 3.2.0', '>= 3.2.2'
+  spec.add_development_dependency 'yard', '~> 0.8.0', '>= 0.8.7.6'
 end
