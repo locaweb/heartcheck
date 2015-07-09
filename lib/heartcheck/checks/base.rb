@@ -1,12 +1,39 @@
 module Heartcheck
   module Checks
+    # Base check that contains the common functionality for chechs
     class Base
-      attr_accessor :functional, :dev, :name, :timeout
-
+      # When it is true the check will work just for `/functional` route.
+      #   It should be used to add warning messages that need to verify,
+      #   but doesn't break your application.
+      #   For example when your async process has more than 3 jobs.
+      #
+      # @return [Boolean] (default: false)
+      attr_accessor :functional
       alias_method :functional?, :functional
+
+      # When it is true the check will work just for `/dev` route.
+      #   you can use it to create some check is not essential/functional for you app.
+      #   For example you can execute some performance check.
+      #
+      # @return [Boolean] (default: false)
+      attr_accessor :dev
       alias_method :dev?, :dev
 
-      # call in Heartcheck.set
+      # The name for identify the check in the result page
+      #
+      # @return [String]
+      attr_accessor :name
+
+      # Time that the check has to execute.
+      #   If it is 0 the timeout will be disable
+      #
+      # @return [Integer] (default: 0)
+      attr_accessor :timeout
+
+
+      # Create a new instance and set the default values.
+      #
+      # @return [Check]
       def initialize
         @dynamic_services = nil
         @error_proc       = nil
@@ -19,22 +46,61 @@ module Heartcheck
         @validate_proc    = nil
       end
 
+      # Seter to add a proc to execute when some check fail.
+      #
+      # @return [void]
       def on_error(&block)
         @error_proc = block if block_given?
       end
 
+      # Seter to add a proc to execute to check.
+      #
+      # @yieldparam services [Array<Hash>] services to check
+      # @yieldparam errors [Array<String>] to add error message when check fails
+      #
+      # @example
+      #   c.to_validate do |services, errors|
+      #     services.each do |service|
+      #       errors << "erro message" unless if service[:connection].connected?
+      #     end
+      #   end
+      #
+      # @return [void]
       def to_validate(&block)
         @validate_proc = block if block_given?
       end
 
+      # It is used to register dynamic services thats need to be evaluate when the checker is running.
+      #  This proc need to return an Array.
+      #
+      # @example
+      #   register_dynamic_services do
+      #     [
+      #       { name: 'service name', connection: MyConnection }
+      #     ]
+      #   end
+      #
+      # @return [void]
       def register_dynamic_services(&block)
         @dynamic_services = block if block_given?
       end
 
+      # It is used to add a service that will use when check run.
+      #
+      # @param service [Hash]
+      #
+      # @example
+      #   add_service(name: 'service name', connection: MyConnection)
+      #
+      # @return [void]
       def add_service(service)
         @services << service
       end
 
+
+      # It is used to add a service that will use when check run.
+      #
+      # @return [Array<Hash>]
       def services
         if @dynamic_services
           @services + @dynamic_services.call
@@ -43,6 +109,9 @@ module Heartcheck
         end
       end
 
+      # run the check and return formated erros
+      #
+      # @return [Hash]
       def check
         validation
         hash = { name => { 'status' => (@errors.empty? ? 'ok' : 'error') } }
@@ -60,6 +129,9 @@ module Heartcheck
 
       private
 
+      # Used to add an error to @erros.
+      #
+      # @return [void]
       def append_error(*args)
         if @error_proc
           @error_proc.call(@errors, *args)
@@ -68,6 +140,9 @@ module Heartcheck
         end
       end
 
+      # run the check
+      #
+      # @return [Array<String>]
       def validation
         @errors = []
         begin
@@ -86,16 +161,30 @@ module Heartcheck
         @errors
       end
 
+      # Get formated error messages for each service after run the check
+      #
+      # @example
+      #   @erros = ['some string']
+      #   error_message
+      #   # => [{type: 'error', message: 'some string'}]
+      #
+      # @return [Array<Hash>]
       def error_message
         @errors.map(&format_error)
       end
 
+      # format the an error message with a format the check need.
+      #
+      # @example
+      #   "some string".format_error
+      #   # => {type: 'error', message: 'some string'}
+      #
+      # @return [Hash]
       def format_error
         lambda do |error|
           error.is_a?(Hash) ? error : { type: 'error', message: error }
         end
       end
-
     end
   end
 end

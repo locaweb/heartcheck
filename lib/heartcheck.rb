@@ -11,6 +11,7 @@ module Heartcheck
   class << self
     # @attr [Array<Checks>] the checks to use when checking
     attr_accessor :checks
+
     # @attr_writer [Object] change the default logger
     attr_writer :logger
 
@@ -26,10 +27,12 @@ module Heartcheck
     # Is used to configure.
     #
     # @yield A bock that recieve the class
+    #
     # @example
     #   Heartcheck.setup do |c|
     #     puts c
     #   end
+    #
     # @return [void]
     def setup
       yield(self)
@@ -42,10 +45,12 @@ module Heartcheck
     # @param [Hash] options the options to create an instance of a check.
     # @option options [String] :class The class name to get an instance
     # @yield a block to config the instance
+    #
     # @example
     #   Heartcheck.add(:base) do |c|
     #     c.name = 'Base check'
     #   end
+    #
     # @return [void]
     def add(name, options = {}, &block)
       class_name = options.fetch(:class) { constantize(name) }
@@ -100,9 +105,11 @@ module Heartcheck
 
     # helper method to get a constant
     #
+    # @param [String] name of class
+    #
     # @example
     #   contantize('my_check') => 'MyCheck'
-    # @param [String] name of class
+    #
     # @return [String]
     def constantize(name)
       name.to_s.split('_').map(&:capitalize).join

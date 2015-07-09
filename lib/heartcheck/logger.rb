@@ -4,6 +4,7 @@ module Heartcheck
     # log message with debug level
     #
     # @param message [String] message to log
+    #
     # @return [void]
     def self.debug(message)
       logger(:debug, message)

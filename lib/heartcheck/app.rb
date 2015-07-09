@@ -23,6 +23,7 @@ module Heartcheck
     #
     # @param app [RackApp] is a rack app where
     #   heartcheck is included.
+    #
     # @return [void]
     def initialize(app = nil)
       @app = app
@@ -32,6 +33,7 @@ module Heartcheck
     #
     # @param env [Hash] is an instance of Hash
     #   that includes CGI-like headers.
+    #
     # @return [Array] must be an array that contains
     #   - The HTTP response code
     #   - A Hash of headers
@@ -50,6 +52,7 @@ module Heartcheck
     #   and call the index method
     #
     # @param req [Rack::Request] an instance of request
+    #
     # @return [String] a response body
     def dispatch_action(req)
       controller = ROUTE_TO_CONTROLLER[req.path_info]
