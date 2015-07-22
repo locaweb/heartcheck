@@ -3,10 +3,10 @@ Heartcheck.setup do |monitor|
   # default value: Logger.new(STDOUT)
   # monitor.logger = Rails.logger
 
-  # Services
-  # For each service you can set the folling options
+  # Checks
+  # For each check you can set the folling options
   #        name: String  => root name to show in report page (default: class.name)
-  #  functional: Boolean => options to set if this service is optional (default: false)
+  #  functional: Boolean => When is false your check is essential to your application (default: false)
   #    on_error: Block   => to customize the errors (default: nil)
   # to_validate: Block   => to validate the sevices (default: nil)
   #
@@ -27,6 +27,30 @@ Heartcheck.setup do |monitor|
   #     end
   #   end
   # end
+  #
+  # Services
+  # All check can receive a service to check.
+  # For example you can add 2 diferent hosts to check the firewall in the same checker.
+  #
+  # monitor.add :firewall do |c|
+  #   c.add_service(host: 'lala.com', port: 80)
+  #   c.add_service(host: 'popo.com', port: 80)
+  # end
+  #
+  # Take atention because we eveluate the services when ruby load the configuration file.
+  # But there's a way to send a service that will evaluate when the test will run. To use with thats way
+  # you need to register a service with `register_dynamic_services`.
+  # http://www.rubydoc.info/github/locaweb/heartcheck/Heartcheck/Checks/Base#register_dynamic_services-instance_method
+  #
+  # monitor.add :firewall do |c|
+  #   c.register_dynamic_services do
+  #     [
+  #       { host: 'lala.com', port: 80 },
+  #       { host: 'popo.com', port: 80 }
+  #     ]
+  #   end
+  # end
+
 
   # Firewall
   # check with telnet if the firewall is open to conect to the service
