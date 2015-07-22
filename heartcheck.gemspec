@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = %w(lib)
 
   spec.add_runtime_dependency 'rack', '~> 1', '>= 1.4.0'
-  spec.add_runtime_dependency 'oj', '~> 2.11.0', '>= 2.11.4'
+  spec.add_runtime_dependency 'oj'
 
   spec.add_development_dependency 'pry-nav', '~> 0.2.0', '>= 0.2.4'
   spec.add_development_dependency 'rspec', '~> 3.1.0', '>= 3.1.0'
