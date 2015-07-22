@@ -1,9 +1,10 @@
-.bundle
-.DS_Store
-.rvmrc
-.ruby-version
-.rbenv-gemsets
-.yardoc
-doc
 *.gem
 *.rbc
+.bundle
+.DS_Store
+.rbenv-gemsets
+.ruby-gemset
+.ruby-version
+.rvmrc
+.yardoc
+doc
