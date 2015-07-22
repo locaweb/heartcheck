@@ -1,10 +1,9 @@
 require 'heartcheck'
 require 'pry'
 
-%w(support/**/*.rb).each { |path| Dir[File.join(File.dirname(__FILE__), path)].each { |f| require f } }
+Dir['./spec/support/**/*.rb'].each{ |helper_file| require helper_file }
 
 RSpec.configure do |config|
-  # config.include JsonSpec::Helpers
   config.mock_with :rspec do |c|
     c.syntax = :expect
   end
