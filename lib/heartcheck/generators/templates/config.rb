@@ -37,7 +37,7 @@ Heartcheck.setup do |monitor|
   #   c.add_service(host: 'popo.com', port: 80)
   # end
   #
-  # Take atention because we eveluate the services when ruby load the configuration file.
+  # Take atention because we evaluate the services when ruby load the configuration file.
   # But there's a way to send a service that will evaluate when the test will run. To use with thats way
   # you need to register a service with `register_dynamic_services`.
   # http://www.rubydoc.info/github/locaweb/heartcheck/Heartcheck/Checks/Base#register_dynamic_services-instance_method
