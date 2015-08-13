@@ -10,7 +10,7 @@ module Heartcheck
       def validate
         services.each do |service|
           if not service[:runtime].eql? installed(service[:file])
-            @errors << "App outdated, check info for the diff"
+            @errors << "App outdated, check /monitoring/info for more details!"
           end
         end
       end
