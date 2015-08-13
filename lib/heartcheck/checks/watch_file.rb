@@ -3,14 +3,18 @@ require 'json'
 module Heartcheck
   module Checks
     class WatchFile < Base
-      def add_service(options)
-        services << options.merge(runtime: installed(options[:file]))
+      def add_service(service)
+        checker = service[:if]
+
+        if checker.nil? || (checker.is_a?(Proc) && checker.call)
+          services << service.merge(runtime: installed(service[:file]))
+        end
       end
 
       def validate
         services.each do |service|
           if not service[:runtime].eql? installed(service[:file])
-            @errors << "App outdated, check info for the diff"
+            @errors << "App outdated, check info route"
           end
         end
       end

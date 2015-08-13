@@ -92,6 +92,6 @@ Heartcheck.setup do |monitor|
   # WatchFile
   # check if a preloaded file as changed from the disk
   monitor.add :watch_file do |c|
-    c.add_service(file: 'version.json')
+    c.add_service(file: 'version.json', if: -> { not Rails.env.development? })
   end
 end
