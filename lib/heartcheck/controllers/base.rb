@@ -13,9 +13,13 @@ module Heartcheck
       protected
 
       def check(who)
-        Oj.dump(Heartcheck
-                .send("#{who}_checks")
-                .map(&:check))
+        Oj.dump(executor.dispatch(Heartcheck.send("#{who}_checks")))
+      end
+
+      private
+
+      def executor
+        Heartcheck::Executors::Base.new
       end
     end
   end

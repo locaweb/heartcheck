@@ -114,11 +114,9 @@ module Heartcheck
       # @return [Hash]
       def check
         validation
-        hash = { name => { 'status' => (@errors.empty? ? 'ok' : 'error') } }
-        hash[name]['message'] = error_message unless @errors.empty?
-
-        Logger.info Oj.dump(hash)
-        hash
+        { name => { 'status' => (@errors.empty? ? 'ok' : 'error') } }.tap do |response|
+          response[name]['message'] = error_message unless @errors.empty?
+        end
       end
 
       def informations

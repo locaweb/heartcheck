@@ -2,6 +2,7 @@ module Heartcheck
   require 'logger'
   require 'heartcheck/app'
   require 'heartcheck/checks'
+  require 'heartcheck/executors'
   require 'heartcheck/errors'
   require 'heartcheck/services'
   require 'heartcheck/logger'
