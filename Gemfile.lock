@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heartcheck (1.0.5)
+    heartcheck (1.0.6)
       oj
       rack (~> 1, >= 1.4.0)
 
@@ -62,3 +62,6 @@ DEPENDENCIES
   rubocop (~> 0.27.0, >= 0.27.1)
   thor (~> 0.19.0, >= 0.19.1)
   yard (~> 0.8.0, >= 0.8.7.6)
+
+BUNDLED WITH
+   1.10.6
