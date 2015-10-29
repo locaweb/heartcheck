@@ -19,7 +19,7 @@ module Heartcheck
       private
 
       def executor
-        Heartcheck::Executors::Base.new
+        Heartcheck.executor
       end
     end
   end

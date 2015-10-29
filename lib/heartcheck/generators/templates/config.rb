@@ -3,6 +3,13 @@ Heartcheck.setup do |monitor|
   # default value: Logger.new(STDOUT)
   # monitor.logger = Rails.logger
 
+  # Using threaded executor
+  #
+  # With this feature is possible to parallelize io-bound checkers
+  # using ruby threads, but to enable this feature you need explicitly
+  # install 'concurrent-ruby' gem on your project
+  # monitor.use_threaded_executor!
+
   # Checks
   # For each check you can set the folling options
   #        name: String  => root name to show in report page (default: class.name)
