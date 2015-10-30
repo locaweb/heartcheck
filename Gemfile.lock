@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    heartcheck (1.0.6)
+    heartcheck (1.0.7)
       oj
       rack (~> 1, >= 1.4.0)
 
