@@ -21,6 +21,30 @@ describe Heartcheck do
     end
   end
 
+  describe '#executor' do
+    context 'with default' do
+      it 'returns a Heartcheck::Executors::Base' do
+        described_class.setup do |monitor|
+          expect(monitor.executor).to be_a(Heartcheck::Executors::Base)
+        end
+      end
+    end
+
+    context 'with custom' do
+      it 'returns a custom custom executor' do
+        described_class.executor = 'lala'
+        expect(described_class.executor).to be_a(String)
+      end
+    end
+
+    context 'with threaded' do
+      it 'returns a threaded  executor' do
+        described_class.use_threaded_executor!
+        expect(described_class.executor).to be_a(Heartcheck::Executors::Threaded)
+      end
+    end
+  end
+
   describe '#essential_checks' do
     before { described_class.checks = [essential, functional] }
 

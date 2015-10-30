@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rack-test', '~> 0.6.0', '>= 0.6.3'
   # for documentation
   spec.add_development_dependency 'yard', '~> 0.8.0', '>= 0.8.7.6'
+  spec.add_development_dependency 'concurrent-ruby', '~> 0.9.1', '>= 0.9.1'
 end

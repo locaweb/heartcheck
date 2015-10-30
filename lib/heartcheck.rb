@@ -13,6 +13,9 @@ module Heartcheck
     # @attr [Array<Checks>] the checks to use when checking
     attr_accessor :checks
 
+    # @attr [Heartcheck::Executors::Base] the checks executor backend
+    attr_accessor :executor
+
     # @attr_writer [Object] change the default logger
     attr_writer :logger
 
@@ -90,6 +93,25 @@ module Heartcheck
     # @return [Array<Check>] checks that respond to :info
     def info_checks
       checks.select { |ctx| ctx.respond_to?(:info) }
+    end
+
+    # an executor class that respond to dispatch(checkers)
+    #
+    # @return [Heartcheck::Executors::Base]
+    def executor
+      @executor ||= Heartcheck::Executors::Base.new
+    end
+
+
+    # change current executor to a threaded implementation
+    # requires 'concurrent-ruby'
+    #
+    # @return [Hearcheck::Executors::Threaded]
+    def use_threaded_executor!
+      require "concurrent"
+      require "heartcheck/executors/threaded"
+
+      self.executor = Heartcheck::Executors::Threaded.new
     end
 
     private
