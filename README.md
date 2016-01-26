@@ -71,3 +71,11 @@ Follow the RubyGems conventions at http://docs.rubygems.org/read/chapter/7 to kn
 ## Merge requests acceptance
 
 Don't forget to write tests to all your code. It's very important to maintain the codebase's sanity. Any merge request that doesn't have enough test coverage will be asked a revision
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
