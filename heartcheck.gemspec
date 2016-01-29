@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'rack', '~> 1', '>= 1.4.0'
   spec.add_runtime_dependency 'oj'
+  spec.add_runtime_dependency 'net-telnet', '~> 0.1.1'
 
   spec.add_development_dependency 'pry-nav', '~> 0.2.0', '>= 0.2.4'
   spec.add_development_dependency 'rspec', '~> 3.1.0', '>= 3.1.0'
