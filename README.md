@@ -2,14 +2,14 @@ Heartcheck
 ==============
 
 [![Build Status](https://travis-ci.org/locaweb/heartcheck.svg)](https://travis-ci.org/locaweb/heartcheck)
+[![Code Climate](https://codeclimate.com/github/locaweb/heartcheck/badges/gpa.svg)](https://codeclimate.com/github/locaweb/heartcheck)
 
 Check your applications' heart.
 
 About
 -----
 
-### Endpoint JSON documentation:
-
+### Endpoint JSON 
 https://github.com/locaweb/heartcheck/wiki/Endpoint-Json
 
 ## How to setup
@@ -56,8 +56,17 @@ https://github.com/locaweb/heartcheck/wiki/Endpoint-Json
 
 ## How to use
 
-You can see how to use in template that is generated when install:
-https://github.com/locaweb/heartcheck/blob/master/lib/heartcheck/generators/templates/config.rb
+You can see how to use in [template](https://github.com/locaweb/heartcheck/blob/master/lib/heartcheck/generators/templates/config.rb) that is generated when install:
+
+
+## Plugins
+* [ActiveRecord](https://github.com/locaweb/heartcheck-activerecord)
+* [Cache](https://github.com/locaweb/heartcheck-cache)
+* [Cas](https://github.com/locaweb/heartcheck-cas)
+* [Redis](https://github.com/locaweb/heartcheck-redis)
+* [Resque](https://github.com/locaweb/heartcheck-resque)
+* [Sidekiq](https://github.com/locaweb/heartcheck-sidekiq)
+* [Webservice](https://github.com/locaweb/heartcheck-webservice)
 
 ## Git tags
 
