@@ -82,7 +82,7 @@ describe Heartcheck::App do
 
     describe '#body' do
       subject { super().body }
-      it { is_expected.to eq(Oj.dump({ status: 'ok' })) }
+      it { is_expected.to eq(MultiJson.dump({ status: 'ok' })) }
     end
 
     describe '#status' do

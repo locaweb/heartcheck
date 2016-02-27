@@ -19,7 +19,7 @@ module Heartcheck
         end
 
         results << { 'total_execution_time' => total_execution_time }
-        Oj.dump(results)
+        MultiJson.dump(results)
       end
 
       private

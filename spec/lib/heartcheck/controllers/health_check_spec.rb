@@ -6,7 +6,7 @@ module Heartcheck
       describe '#index' do
         subject(:index) { controller.index }
 
-        it { is_expected.to eq(Oj.dump({ status: 'ok' })) }
+        it { is_expected.to eq(MultiJson.dump({ status: 'ok' })) }
       end
     end
   end

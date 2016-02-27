@@ -1,7 +1,10 @@
 require 'heartcheck'
 require 'pry'
+require 'oj'
 
 Dir['./spec/support/**/*.rb'].each{ |helper_file| require helper_file }
+
+Oj.default_options = { mode: :compat }
 
 RSpec.configure do |config|
   config.mock_with :rspec do |c|

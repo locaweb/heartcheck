@@ -1,7 +1,7 @@
 require 'rack'
-require 'oj'
+require 'multi_json'
 
-Oj.default_options = { mode: :compat }
+Oj.default_options = { mode: :compat } if defined?(Oj)
 
 module Heartcheck
   module Controllers
@@ -13,7 +13,7 @@ module Heartcheck
       protected
 
       def check(who)
-        Oj.dump(executor.dispatch(Heartcheck.send("#{who}_checks")))
+        MultiJson.dump(executor.dispatch(Heartcheck.send("#{who}_checks")))
       end
 
       private

@@ -31,7 +31,7 @@ module Heartcheck
           end
         end
 
-        it { is_expected.to eq(Oj.dump(result)) }
+        it { is_expected.to eq(MultiJson.dump(result)) }
       end
     end
   end
