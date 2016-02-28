@@ -29,7 +29,7 @@ module Heartcheck
           end
         end
 
-        it { is_expected.to eq(Oj.dump([check_01, check_02])) }
+        it { is_expected.to eq(MultiJson.dump([check_01, check_02])) }
       end
     end
   end
