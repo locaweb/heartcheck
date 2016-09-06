@@ -4,3 +4,4 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rack', '~> 1.6'
+gem 'rubocop', '~> 0.41.2'
