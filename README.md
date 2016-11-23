@@ -1,65 +1,80 @@
-Heartcheck
-==============
+# Heartcheck
+
+Heartcheck is a monitoring tool for Rack applications. It provides a DSL to
+declare service checks and an URI that returns the status for each service.
+With this gem you can monitor if your app has access to the database, a cache
+service, an API, etc.
 
 [![Build Status](https://travis-ci.org/locaweb/heartcheck.svg)](https://travis-ci.org/locaweb/heartcheck)
 [![Code Climate](https://codeclimate.com/github/locaweb/heartcheck/badges/gpa.svg)](https://codeclimate.com/github/locaweb/heartcheck)
 
-Check your applications' heart.
+## Installation
 
-About
------
+Add this line to your application's Gemfile:
 
-### Endpoint JSON 
-https://github.com/locaweb/heartcheck/wiki/Endpoint-Json
+```ruby
+gem 'heartcheck'
+```
 
-## How to setup
+And then execute:
 
-1. Include the gem in your Gemfile:
+    $ bundle
 
-    ```
-    gem 'heartcheck'
-    ```
+Or install it yourself as:
 
-2. Install the gem:
+    $ gem install heartcheck
 
-    ```
-    bundle install
-    ```
+## Usage
 
-3. Generate some required files according to the framework you are using:
+First generate the config file for the framework you are using:
 
-    ```
-    heartcheck rails
-    heartcheck padrino
-    heartcheck sinatra
-    ```
+    $ heartcheck rails
+    $ heartcheck padrino
+    $ heartcheck sinatra
 
-4. After that, follow the instructions, edit the generated files and restart your server.
+Then edit the generated file by adding your checks on it and restart your
+server. Now you should be able to make a HTTP request for `/monitoring` and
+get a JSON response that contains the status for each monitored service.
 
-5. Done! Now you are able to access `[host]/monitoring` and check the monitoring JSON!
+## HTTP Routes
 
-## Routes
-* `[host]/monitoring`
-    * To check if the app and its integrations are avaiable;
-    * Directed for verifying the app SLA;
-* `[host]/monitoring/info`
-    * To view some informations that you can configure;
-    * Directed for availability check from load balanced and get info about the installed app;
-* `[host]/monitoring/functional`
-    * To check if the app is healty (no async job failed and other checks that aren't related to app availability);
-    * Directed for verifying consistency problems within the app;
-* `[host]/monitoring/dev`
-    * Directed for the development team;
-    * It's run the essential and functional checks;
-* `[host]/monitoring/health_check`
-    * To check if the app is up and running
+#### Basic health check
 
-## How to use
+To get the status for all services, make a HTTP request for the following URI:
 
-You can see how to use in [template](https://github.com/locaweb/heartcheck/blob/master/lib/heartcheck/generators/templates/config.rb) that is generated when install:
+    /monitoring
 
+It will return a JSON response and a status for each service.
+
+#### Functional status
+
+Functional services are services essential for your application. You can get
+their status using the following route:
+
+    /monitoring/functional
+
+#### Info route
+
+This route returns custom information about your app. You can configure it to
+return whatever information you want:
+
+    /monitoring/info
+
+#### Dev status
+
+Returns some debugging information:
+
+    /monitoring/dev
+
+#### Very basic health check
+
+Returns a simple `ok` if the app is running. It does not execute any configured
+checks:
+
+    /monitoring/health_check
 
 ## Plugins
+
 * [ActiveRecord](https://github.com/locaweb/heartcheck-activerecord)
 * [Cache](https://github.com/locaweb/heartcheck-cache)
 * [Cas](https://github.com/locaweb/heartcheck-cas)
@@ -68,23 +83,7 @@ You can see how to use in [template](https://github.com/locaweb/heartcheck/blob/
 * [Sidekiq](https://github.com/locaweb/heartcheck-sidekiq)
 * [Webservice](https://github.com/locaweb/heartcheck-webservice)
 
-## Git tags
-
-Don't forget to tag your work! After a merge request being accepted, run:
-
-1 - (git tag -a "x.x.x" -m "") to create the new tag.
-2 - (git push origin "x.x.x") to push the new tag to remote.
-
-Follow the RubyGems conventions at http://docs.rubygems.org/read/chapter/7 to know how to increment the version number. Covered in more detail in http://semver.org/
-
-## Merge requests acceptance
-
-Don't forget to write tests to all your code. It's very important to maintain the codebase's sanity. Any merge request that doesn't have enough test coverage will be asked a revision
-
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Bug reports and pull requests are welcome on GitHub at
+https://github.com/locaweb/heartcheck.
