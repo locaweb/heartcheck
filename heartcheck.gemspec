@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = Heartcheck::VERSION
   spec.authors = ['Locaweb']
   spec.email = ['desenvolvedores@locaweb.com.br']
-  spec.homepage = 'http://developer.locaweb.com.br'
+  spec.homepage = 'http://github.com/locaweb/heartcheck/'
   spec.summary = 'A simple way to check if your app is runnig like as expected.'
   spec.description = 'A simple way to check your app heart.'
   spec.license =  'MIT'
