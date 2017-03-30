@@ -1,5 +1,9 @@
 = Heart Check - Changelog
 
+== Version 1.2.0 :: 2017-03-30
+
+  * Adds a caching plug
+
 == Version 1.0.0 :: 2015-02-02
 
   * Inital release.
