@@ -1,6 +1,7 @@
 module Heartcheck
   require 'logger'
   require 'heartcheck/app'
+  require 'heartcheck/caching_app'
   require 'heartcheck/checks'
   require 'heartcheck/executors'
   require 'heartcheck/errors'
@@ -102,11 +103,10 @@ module Heartcheck
       @executor ||= Heartcheck::Executors::Base.new
     end
 
-
     # change current executor to a threaded implementation
     # requires 'concurrent-ruby'
     #
-    # @return [Hearcheck::Executors::Threaded]
+    # @return [Heartcheck::Executors::Threaded]
     def use_threaded_executor!
       require "concurrent"
       require "heartcheck/executors/threaded"

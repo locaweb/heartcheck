@@ -25,15 +25,29 @@ module Heartcheck
       when 'rails'
         instructions(
           'config/routes.rb',
-          'mount Heartcheck::App.new, at: "/monitoring"'
+          [
+            'mount Heartcheck::App.new, at: "/monitoring"',
+            '',
+            '# to mount a caching instance:',
+            '# mount Heartcheck::CachingApp.new(HeartCheck::App.new, 300),',
+            '#   at: "/cached-monitoring" # 300 is the optional cache TTL'
+          ].join("\n")
         )
       when 'padrino', 'sinatra'
         instructions(
-          'config.ru', %(require "heartcheck"
-map "/monitoring" do
-  use Heartcheck::App
-end)
-        )
+          'config.ru', [
+            'require "heartcheck"',
+            '',
+            'map "/monitoring" do',
+            '  use Heartcheck::App',
+            'end',
+            '',
+            '# or a cached instance:',
+            '# map "/cached/monitoring" do',
+            '#   use Heartcheck::CachingApp, 300 # 300 is the optional ttl',
+            '#   use Heartcheck::App',
+            '# end',
+          ].join("\n"))
       end
     end
 

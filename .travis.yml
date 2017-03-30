@@ -16,3 +16,5 @@ matrix:
       gemfile: Gemfile-old-ruby
     - rvm: "2.2.2"
     - rvm: "2.3.0"
+    - rvm: "2.3.3"
+    - rvm: "2.4.1"
