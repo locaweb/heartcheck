@@ -119,6 +119,14 @@ module Heartcheck
         end
       end
 
+      # Returns a human-readable representation of the check
+      #
+      # @return [String]
+      def inspect
+        "#<#{self.class.name} name: #{name}, functional: #{functional?}, dev: #{dev?}>"
+      end
+
+
       def informations
         info
       rescue => e
