@@ -1,4 +1,5 @@
 require 'rack/test'
+require 'heartcheck/caching_app'
 
 module Heartcheck
   describe CachingApp do
