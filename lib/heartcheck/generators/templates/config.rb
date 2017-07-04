@@ -76,8 +76,8 @@ Heartcheck.setup do |monitor|
     # params
     # errors:  Array           => errors to show on page
     # service: FirewallService => object that respond to :host and :port
-    c.on_error do |_errors, service|
-      erros << "Custom error message for #{service.host}"
+    c.on_error do |errors, service|
+      errors << "Custom error message for #{service.host}"
     end
   end
 
