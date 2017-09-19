@@ -16,7 +16,8 @@ module Heartcheck
       '/functional' => Controllers::Functional,
       '/dev' => Controllers::Dev,
       '/info' => Controllers::Info,
-      '/health_check' => Controllers::HealthCheck
+      '/health_check' => Controllers::HealthCheck,
+      '/environment' => Controllers::Environment
     }
 
     # Sets up the rack application.
