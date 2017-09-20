@@ -6,9 +6,9 @@ module Heartcheck
       def index
         MultiJson.dump(
           {
-            'system-info' => Sys::Uname.uname,
-            'ruby-version' => RUBY_VERSION,
-            'rails-version' => defined?(Rails) ? Rails::VERSION::STRING : '(none)'
+            :system_info => Sys::Uname.uname.to_h,
+            :ruby_version => RUBY_VERSION,
+            :rails_version => defined?(Rails) ? Rails::VERSION::STRING : '(none)'
           }
         )
       end
