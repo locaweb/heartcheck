@@ -17,7 +17,7 @@ module Heartcheck
           end
 
           it 'gets info from the right constants and functions' do
-            allow(Sys::Uname).to receive_message_chain(:uname, :to_h).and_return(system_info_example)
+            allow(Sys::Uname).to receive_message_chain(:uname, :each_pair, :to_a).and_return([[:example_key, "example_value"]])
             is_expected.to include(
               :system_info => system_info_example,
               :ruby_version => '2.4.0',
@@ -60,7 +60,7 @@ module Heartcheck
 
         context "given Rails is not used" do
           it 'gets the info indicating Rails is not used' do
-            allow(Sys::Uname).to receive_message_chain(:uname, :to_h).and_return(system_info_example)
+            allow(Sys::Uname).to receive_message_chain(:uname, :each_pair, :to_a).and_return([[:example_key, "example_value"]])
             is_expected.to include(
               :system_info => system_info_example,
               :ruby_version => '2.4.0',

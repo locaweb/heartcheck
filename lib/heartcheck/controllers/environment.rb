@@ -6,7 +6,7 @@ module Heartcheck
       def index
         MultiJson.dump(
           {
-            :system_info => Sys::Uname.uname.to_h,
+            :system_info => Hash[Sys::Uname.uname.each_pair.to_a],
             :ruby_version => RUBY_VERSION,
             :rails_version => defined?(Rails) ? Rails::VERSION::STRING : '(none)'
           }
