@@ -1,5 +1,9 @@
 = Heart Check - Changelog
 
+== Version 1.3.0 :: 2017-09-21
+
+ * Adds the `/environment` endpoint
+
 == Version 1.2.0 :: 2017-03-30
 
   * Adds a caching plug
