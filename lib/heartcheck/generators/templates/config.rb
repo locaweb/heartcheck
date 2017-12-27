@@ -14,6 +14,8 @@ Heartcheck.setup do |monitor|
   # For each check you can set the folling options
   #        name: String  => root name to show in report page (default: class.name)
   #  functional: Boolean => When is false your check is essential to your application (default: false)
+  #     doc_url: String  => To provide more details about the failure (optional)
+  # (default: nil)
   #    on_error: Block   => to customize the errors (default: nil)
   # to_validate: Block   => to validate the sevices (default: nil)
   #
@@ -23,6 +25,7 @@ Heartcheck.setup do |monitor|
   #   c.name       = "filesystem"
   #   c.functional = true
   #   c.add_service(name: "my_file", path: "/var/www/my_project/my_file")
+  #   c.doc_url    = 'http://docs.com/monitoring#check-filesystem'
   #
   #   c.on_error do |sevices|
   #     errors << "Custom error message for #{service[:name]}"

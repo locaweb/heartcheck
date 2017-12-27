@@ -133,12 +133,49 @@ describe Heartcheck::Checks::Base do
       end
 
       it 'returns the errors' do
-        expect(subject.check).to eq('base' => { 'status' => 'error', 'message' => [{ type: 'error', message: 'reaching' }] })
+        expect(subject.check).to eq(
+          'base' => {
+            'status' => 'error',
+            'message' => [{ type: 'error', message: 'reaching', doc_url: nil }]
+          }
+        )
       end
 
       it 'should not accumulate errors' do
         subject.check
-        expect(subject.check).to eq('base' => { 'status' => 'error', 'message' => [{ type: 'error', message: 'reaching' }] })
+        expect(subject.check).to eq(
+          'base' => {
+            'status' => 'error',
+            'message' => [{ type: 'error', message: 'reaching', doc_url: nil }]
+          }
+        )
+      end
+
+      it 'shows the doc_url if present' do
+        # setup
+        doc_url = 'http://lala.com/docs/monitoring'
+        check_item = described_class.new
+        check_item.to_validate do |_services, errors|
+          errors << 'reaching'
+        end
+        check_item.doc_url = doc_url
+
+        # exercise
+        result = check_item.check
+
+        # verify
+        expect(result).to eq(
+          'base' => {
+            'status' => 'error',
+            'message' => [
+              {
+                type: 'error',
+                message: 'reaching',
+                doc_url: doc_url
+              }
+            ]
+          }
+        )
       end
     end
   end
