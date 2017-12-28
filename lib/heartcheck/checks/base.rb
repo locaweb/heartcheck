@@ -30,6 +30,13 @@ module Heartcheck
       # @return [Integer] (default: 0)
       attr_accessor :timeout
 
+      # An url to provide more info about the check.
+      #   It is important to provide details about the failure, for example:
+      #   - what is the impact
+      #   - how to fix it
+      #   - how to reproduce the failure
+      # @return [String] (default: nil)
+      attr_accessor :doc_url
 
       # Create a new instance and set the default values.
       #
@@ -188,7 +195,11 @@ module Heartcheck
       # @return [Hash]
       def format_error
         lambda do |error|
-          error.is_a?(Hash) ? error : { type: 'error', message: error }
+          if error.is_a?(Hash)
+            error
+          else
+            { type: 'error', message: error, doc_url: doc_url }
+          end
         end
       end
     end
