@@ -37,6 +37,21 @@ Then edit the generated file by adding your checks on it and restart your
 server. Now you should be able to make a HTTP request for `/monitoring` and
 get a JSON response that contains the status for each monitored service.
 
+### Using built-in checks
+
+#### Firewall check
+
+```ruby
+Heartcheck.setup do |config|
+  config.add :firewall do |c|
+    c.add_service(host: 'domain.com', port: 80)
+    c.add_service(host: 'domain.com', port: 80, timeout: 5) # Default timeout is 2 seconds
+    c.add_service(url: 'https://domain.com')
+    c.add_service(url: 'https://domain.com', proxy: 'http://proxy.domain.com')
+  end
+end
+```
+
 ## HTTP Routes
 
 #### Basic health check
