@@ -14,13 +14,13 @@ module Heartcheck
       # @option params [Integer] :port Number of port to check
       # @option params [String] :proxy The uri of your proxy if is required
       # @option params [integer] :timeout (defaults to: 2) Number in seconds
-      # @option params [string] :uri You can pass a URI instead a host and port
+      # @option params [string] :url You can pass a URI instead a host and port
       #
       # @example
       #   Firewall.new(host: 'domain.com', port: 80)
       #   Firewall.new(host: 'domain.com', port: 80, timeout: 5)
-      #   Firewall.new(uri: 'https://domain.com')
-      #   Firewall.new(uri: 'https://domain.com', proxy: 'http://proxy.domain.com')
+      #   Firewall.new(url: 'https://domain.com')
+      #   Firewall.new(url: 'https://domain.com', proxy: 'http://proxy.domain.com')
       #
       # @return [void]
       def initialize(params)
