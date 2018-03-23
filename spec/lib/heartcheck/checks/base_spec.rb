@@ -178,6 +178,60 @@ describe Heartcheck::Checks::Base do
         )
       end
     end
+
+    it 'does not run the validation again if cache_expires_in present' do
+      # setup
+      base = described_class.new
+      base.cache_expires_in = 10.seconds
+      count = 0
+      base.to_validate do |_services, errors|
+        count += 1
+        errors << 'error'
+      end
+
+      # exercice and verify
+      result = base.check
+      expect(result).to be_present
+      expect(count).to eq(1)
+
+      result_cached = base.check
+      expect(result_cached).to eq(result)
+      expect(count).to eq(1)
+
+      Timecop.travel(Time.now + 20.seconds) do
+        result = base.check
+
+        expect(result).to eq(result)
+        expect(count).to eq(2)
+      end
+
+      Timecop.travel(Time.now + 25.seconds) do
+        result_cached = base.check
+
+        expect(result_cached).to eq(result)
+        expect(count).to eq(2)
+      end
+    end
+
+    it 'always run the validation if cache_expires_in is nil' do
+      # setup
+      base = described_class.new
+      base.cache_expires_in = nil
+      count = 0
+      base.to_validate do |_services, errors|
+        count += 1
+        errors << 'error'
+      end
+
+      # exercice and verify
+      result = base.check
+      expect(result).to be_present
+      expect(count).to eq(1)
+
+      result = base.check
+      expect(result).to eq(result)
+      expect(count).to eq(2)
+    end
   end
 
   describe '#informations' do

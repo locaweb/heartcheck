@@ -16,6 +16,8 @@ Heartcheck.setup do |monitor|
   #  functional: Boolean => When is false your check is essential to your application (default: false)
   #     doc_url: String  => To provide more details about the failure (optional)
   # (default: nil)
+  #   cache_expires_in: Integer => If provided (in seconds), cache the result
+  # of the check for a time
   #    on_error: Block   => to customize the errors (default: nil)
   # to_validate: Block   => to validate the sevices (default: nil)
   #
@@ -26,6 +28,7 @@ Heartcheck.setup do |monitor|
   #   c.functional = true
   #   c.add_service(name: "my_file", path: "/var/www/my_project/my_file")
   #   c.doc_url    = 'http://docs.com/monitoring#check-filesystem'
+  #   c.cache_expires_in  = 10.minutes # default nil
   #
   #   c.on_error do |sevices|
   #     errors << "Custom error message for #{service[:name]}"

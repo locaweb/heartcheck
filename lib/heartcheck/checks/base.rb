@@ -38,6 +38,11 @@ module Heartcheck
       # @return [String] (default: nil)
       attr_accessor :doc_url
 
+      # If set, it caches the result of the check given the provided time
+      # Example: cache_expires_in: 10.minutes
+      # @return [Integer] (default: nil)
+      attr_accessor :cache_expires_in
+
       # Create a new instance and set the default values.
       #
       # @return [Check]
@@ -120,9 +125,12 @@ module Heartcheck
       #
       # @return [Hash]
       def check
-        validation
-        { name => { 'status' => (@errors.empty? ? 'ok' : 'error') } }.tap do |response|
-          response[name]['message'] = error_message unless @errors.empty?
+        if cache_expires_in.nil?
+          return run_check
+        end
+
+        cache.fetch(cache_key, expires_in: cache_expires_in) do
+          run_check
         end
       end
 
@@ -141,6 +149,17 @@ module Heartcheck
       end
 
       private
+
+      def cache_key
+        @cache_key ||= "heartcheck-check-#{name}"
+      end
+
+      def run_check
+        validation
+        { name => { 'status' => (@errors.empty? ? 'ok' : 'error') } }.tap do |response|
+          response[name]['message'] = error_message unless @errors.empty?
+        end
+      end
 
       # Used to add an error to @erros.
       #
@@ -201,6 +220,10 @@ module Heartcheck
             { type: 'error', message: error, doc_url: doc_url }
           end
         end
+      end
+
+      def cache
+        Heartcheck.cache
       end
     end
   end
