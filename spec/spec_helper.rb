@@ -1,6 +1,7 @@
 require 'heartcheck'
 require 'pry'
 require 'oj'
+require 'timecop'
 
 Dir['./spec/support/**/*.rb'].each{ |helper_file| require helper_file }
 
