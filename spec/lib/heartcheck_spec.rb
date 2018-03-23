@@ -21,6 +21,23 @@ describe Heartcheck do
     end
   end
 
+  describe '#cache' do
+    context 'with default' do
+      it 'returns the activesupport memory cache' do
+        described_class.setup do |monitor|
+          expect(monitor.cache).to be_a(ActiveSupport::Cache::MemoryStore)
+        end
+      end
+    end
+
+    context 'with custom' do
+      it 'returns a custom loggger' do
+        described_class.cache = 'lala'
+        expect(described_class.cache).to be_a(String)
+      end
+    end
+  end
+
   describe '#executor' do
     context 'with default' do
       it 'returns a Heartcheck::Executors::Base' do

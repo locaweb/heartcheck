@@ -6,6 +6,7 @@ module Heartcheck
   require 'heartcheck/errors'
   require 'heartcheck/services'
   require 'heartcheck/logger'
+  require 'active_support/cache'
 
   @checks = []
 
@@ -18,6 +19,9 @@ module Heartcheck
 
     # @attr_writer [Object] change the default logger
     attr_writer :logger
+
+    # @attr_writer [Object] change the default cache
+    attr_writer :cache
 
     # Is used to log some messages when checking if the logger
     # is not set it's returns de default_logger.
@@ -111,6 +115,10 @@ module Heartcheck
       require "heartcheck/executors/threaded"
 
       self.executor = Heartcheck::Executors::Threaded.new
+    end
+
+    def cache
+      @cache ||= ActiveSupport::Cache::MemoryStore.new
     end
 
     private
