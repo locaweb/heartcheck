@@ -16,6 +16,7 @@ module Heartcheck
       '/functional' => Controllers::Functional,
       '/dev' => Controllers::Dev,
       '/info' => Controllers::Info,
+      '/inspect' => Controllers::Inspect,
       '/health_check' => Controllers::HealthCheck,
       '/environment' => Controllers::Environment
     }

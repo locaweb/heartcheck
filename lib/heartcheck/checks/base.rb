@@ -133,6 +133,13 @@ module Heartcheck
         "#<#{self.class.name} name: #{name}, functional: #{functional?}, dev: #{dev?}>"
       end
 
+      # Returns a structure comprised of host, port and
+      # schema (protocol) for the check
+      #
+      # @return [Hash]
+      def uri_info
+        { error: "#{self.class.name} #url_info not implemented." }
+      end
 
       def informations
         info
