@@ -3,8 +3,8 @@ module Heartcheck
     class Inspect < Base
       def index
         results = {
-          application_name: Rails.application.class.name,
-          environment: ENV['RAILS_ENV'],
+          application_name: application_name,
+          environment: environment,
           dependencies: []
         }
 
@@ -14,6 +14,16 @@ module Heartcheck
         end.flatten
 
         MultiJson.dump(results)
+      end
+
+      private
+
+      def application_name
+        ENV.fetch('HEARTCHECK_APP_NAME')
+      end
+
+      def environment
+        ENV.fetch('RAILS_ENV')
       end
     end
   end

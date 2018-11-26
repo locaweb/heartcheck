@@ -37,6 +37,11 @@ Then edit the generated file by adding your checks on it and restart your
 server. Now you should be able to make a HTTP request for `/monitoring` and
 get a JSON response that contains the status for each monitored service.
 
+The following environment variables are needed by heartcheck:
+
+    HEARTCHECK_APP_NAME=MyApplicationName
+
+
 ### Using built-in checks
 
 #### Firewall check
@@ -88,6 +93,13 @@ Returns a simple `ok` if the app is running. It does not execute any configured
 checks:
 
     /monitoring/health_check
+
+
+#### General info and dependencies
+
+Returns general application info and a list of dependencies' URIs, but executes no checking:
+
+    /monitoring/inspect
 
 ## Plugins
 
