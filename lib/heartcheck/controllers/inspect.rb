@@ -10,7 +10,7 @@ module Heartcheck
         checks = Heartcheck.checks
         results[:dependencies] += checks.reduce([]) do |acc, elem|
           acc << elem.uri_info
-        end.flatten
+        end.flatten.uniq
 
         MultiJson.dump(results)
       end
