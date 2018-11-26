@@ -4,7 +4,6 @@ module Heartcheck
       def index
         results = {
           application_name: application_name,
-          environment: environment,
           dependencies: []
         }
 
@@ -20,10 +19,6 @@ module Heartcheck
 
       def application_name
         ENV.fetch('HEARTCHECK_APP_NAME')
-      end
-
-      def environment
-        ENV.fetch('RAILS_ENV')
       end
     end
   end
