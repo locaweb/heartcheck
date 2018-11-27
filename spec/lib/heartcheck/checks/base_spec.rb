@@ -202,4 +202,15 @@ describe Heartcheck::Checks::Base do
       end
     end
   end
+
+  describe '#uri_info' do
+    context 'for the base class' do
+      it 'returns a hash with an error message' do
+        expect(subject.uri_info).to include(:error)
+        expect(subject.uri_info).not_to include(:host)
+        expect(subject.uri_info).not_to include(:port)
+        expect(subject.uri_info).not_to include(:schema)
+      end
+    end
+  end
 end

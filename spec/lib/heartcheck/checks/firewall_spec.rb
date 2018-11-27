@@ -13,6 +13,24 @@ describe Heartcheck::Checks::Firewall do
     end
   end
 
+  describe '#uri_info' do
+    context 'when multiple services are being checked' do
+      before do
+        subject.add_service(url: 'http://url1.com')
+        subject.add_service(url: 'https://url2.com')
+        subject.add_service(url: 'http://url3.com')
+      end
+
+      it 'returs a list os URI hashes' do
+        result = subject.uri_info
+
+        expect(result).to eq([{host: 'url1.com', port: 80, scheme: 'http'},
+                              {host: 'url2.com', port: 443, scheme: 'https'},
+                              {host: 'url3.com', port: 80, scheme: 'http'}])
+      end
+    end
+  end
+
   describe '#validate' do
     subject { instance_default }
 

@@ -16,6 +16,16 @@ module Heartcheck
         end
       end
 
+      def uri_info
+        services.map do |s|
+          {
+            host: s.uri.host,
+            port: s.uri.port,
+            scheme: s.uri.scheme
+          }
+        end
+      end
+
       private
 
       def custom_error(service)
