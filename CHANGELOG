@@ -1,5 +1,9 @@
 = Heart Check - Changelog
 
+== Version 1.5.0 :: 2018-11-29
+
+ * Adds the '/monitoring/inspect' endpoint to get general info and dependencies
+
 == Version 1.4.0 :: 2017-12-27
 
  * Adds property `doc_url` to Checks::Base to provide more details about the
