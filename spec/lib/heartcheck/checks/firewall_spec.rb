@@ -25,10 +25,10 @@ describe Heartcheck::Checks::Firewall do
       it 'returs a list os URI hashes' do
         result = subject.uri_info
 
-        expect(result).to eq([{host: 'url1.com', port: 80, scheme: 'http'},
-                              {host: 'url2.com', port: 443, scheme: 'https'},
-                              {host: 'url3.com', port: 80, scheme: 'http'},
-                              {host: 'url4.com', port: 80, scheme: ''}])
+        expect(result).to eq([{ host: 'url1.com', port: 80, scheme: 'http' },
+                              { host: 'url2.com', port: 443, scheme: 'https' },
+                              { host: 'url3.com', port: 80, scheme: 'http' },
+                              { host: 'url4.com', port: 80, scheme: '' }])
       end
     end
   end
@@ -38,8 +38,12 @@ describe Heartcheck::Checks::Firewall do
 
     context 'without proxy' do
       context 'with success' do
+        let(:telnet) { double(Net::Telnet, close: true) }
+        let(:params) { { 'Port' => 443, 'Host' => 'lala.com', 'Timeout' => 2 } }
+
         it 'calls Net::Telnet with valid params' do
-          expect(Net::Telnet).to receive(:new).with('Port' => 443, 'Host' => 'lala.com', 'Timeout' => 2)
+          expect(Net::Telnet).to receive(:new).with(params) { telnet }
+          expect(telnet).to receive(:close)
           subject.validate
         end
       end
@@ -66,7 +70,15 @@ describe Heartcheck::Checks::Firewall do
     end
 
     context 'with proxy' do
-      subject { described_class.new.tap { |c| c.add_service(port: 443, host: 'lala.com', proxy: 'http://uriproxy.com.br:8888') } }
+      let(:host) { 'lala.com' }
+      let(:port) { 443 }
+      let(:proxy) { 'http://uriproxy.com.br:8888' }
+
+      subject do
+        described_class.new.tap do |c|
+          c.add_service(port: port, host: host, proxy: proxy)
+        end
+      end
 
       it 'calls Net::Telnet with valid params of proxy' do
         expect(Net::Telnet).to receive(:new).with('Port' => 8888, 'Host' => 'uriproxy.com.br', 'Timeout' => 2).ordered.and_return('proxy')
@@ -85,11 +97,16 @@ describe Heartcheck::Checks::Firewall do
       end
 
       context 'timeout' do
+        let(:proxy_uri) { 'uriproxy.com.br:8888' }
+        let(:error_msg) do
+          "connection refused on: #{host}:443 using proxy: #{proxy_uri}"
+        end
+
         it 'adds timeout to errors array' do
           expect(Net::Telnet).to receive(:new).and_raise Timeout::Error.new
           subject.validate
 
-          expect(subject.instance_variable_get(:@errors)).to eq(['connection refused on: lala.com:443 via proxy: uriproxy.com.br:8888'])
+          expect(subject.instance_variable_get(:@errors)).to eq([error_msg])
         end
       end
     end
