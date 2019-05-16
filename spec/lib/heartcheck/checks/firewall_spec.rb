@@ -19,6 +19,7 @@ describe Heartcheck::Checks::Firewall do
         subject.add_service(url: 'http://url1.com')
         subject.add_service(url: 'https://url2.com')
         subject.add_service(url: 'http://url3.com')
+        subject.add_service(host: 'url4.com', port: 80)
       end
 
       it 'returs a list os URI hashes' do
@@ -26,7 +27,8 @@ describe Heartcheck::Checks::Firewall do
 
         expect(result).to eq([{host: 'url1.com', port: 80, scheme: 'http'},
                               {host: 'url2.com', port: 443, scheme: 'https'},
-                              {host: 'url3.com', port: 80, scheme: 'http'}])
+                              {host: 'url3.com', port: 80, scheme: 'http'},
+                              {host: 'url4.com', port: 80, scheme: ''}])
       end
     end
   end

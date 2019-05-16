@@ -17,11 +17,11 @@ module Heartcheck
       end
 
       def uri_info
-        services.map do |s|
+        services.map do |service|
           {
-            host: s.uri.host,
-            port: s.uri.port,
-            scheme: s.uri.scheme
+            host: service.host,
+            port: service.port,
+            scheme: service.uri.scheme || ''
           }
         end
       end
