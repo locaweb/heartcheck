@@ -1,5 +1,9 @@
 = Heart Check - Changelog
 
+== Version 1.5.1 :: 2019-05-16
+
+ * Fixing '/monitoring/inspect' endpoint on rendering items of firewall
+
 == Version 1.5.0 :: 2018-11-29
 
  * Adds the '/monitoring/inspect' endpoint to get general info and dependencies

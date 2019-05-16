@@ -1,5 +1,5 @@
 language: ruby
-before_install: gem install bundler
+before_install: gem install bundler -v 1.17.3
 install: bundle install -j 4 --retry 3
 script:
   - bin/rspec

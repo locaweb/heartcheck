@@ -8,7 +8,7 @@ module Heartcheck
       def validate
         services.each do |service|
           begin
-            Net::Telnet.new(service.params)
+            Net::Telnet.new(service.params).close
           rescue Errno::ECONNREFUSED; nil
           rescue
             append_error(service)
@@ -17,11 +17,11 @@ module Heartcheck
       end
 
       def uri_info
-        services.map do |s|
+        services.map do |service|
           {
-            host: s.uri.host,
-            port: s.uri.port,
-            scheme: s.uri.scheme
+            host: service.host,
+            port: service.port,
+            scheme: service.uri.scheme || ''
           }
         end
       end
@@ -33,7 +33,7 @@ module Heartcheck
 
         if service.proxy
           proxy_uri = URI(service.proxy)
-          error_message << " via proxy: #{proxy_uri.host}:#{proxy_uri.port}"
+          error_message << " using proxy: #{proxy_uri.host}:#{proxy_uri.port}"
         end
 
         @errors << error_message
