@@ -25,10 +25,10 @@ describe Heartcheck::Checks::Firewall do
       it 'returs a list os URI hashes' do
         result = subject.uri_info
 
-        expect(result).to eq([{host: 'url1.com', port: 80, scheme: 'http'},
-                              {host: 'url2.com', port: 443, scheme: 'https'},
-                              {host: 'url3.com', port: 80, scheme: 'http'},
-                              {host: 'url4.com', port: 80, scheme: ''}])
+        expect(result).to eq([{ host: 'url1.com', port: 80, scheme: 'http' },
+                              { host: 'url2.com', port: 443, scheme: 'https' },
+                              { host: 'url3.com', port: 80, scheme: 'http' },
+                              { host: 'url4.com', port: 80, scheme: '' }])
       end
     end
   end
@@ -38,8 +38,12 @@ describe Heartcheck::Checks::Firewall do
 
     context 'without proxy' do
       context 'with success' do
+        let(:telnet) { double(Net::Telnet, close: true) }
+        let(:params) { { 'Port' => 443, 'Host' => 'lala.com', 'Timeout' => 2 } }
+
         it 'calls Net::Telnet with valid params' do
-          expect(Net::Telnet).to receive(:new).with('Port' => 443, 'Host' => 'lala.com', 'Timeout' => 2)
+          expect(Net::Telnet).to receive(:new).with(params) { telnet }
+          expect(telnet).to receive(:close)
           subject.validate
         end
       end
@@ -85,11 +89,12 @@ describe Heartcheck::Checks::Firewall do
       end
 
       context 'timeout' do
+        let(:error_msg) { 'connection refused on: lala.com:443 using proxy: uriproxy.com.br:8888' }
         it 'adds timeout to errors array' do
           expect(Net::Telnet).to receive(:new).and_raise Timeout::Error.new
           subject.validate
 
-          expect(subject.instance_variable_get(:@errors)).to eq(['connection refused on: lala.com:443 via proxy: uriproxy.com.br:8888'])
+          expect(subject.instance_variable_get(:@errors)).to eq([error_msg])
         end
       end
     end
