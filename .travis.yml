@@ -5,19 +5,15 @@ script:
   - bin/rspec
 matrix:
   include:
-    - rvm: "1.9.3"
+    - rvm: 1.9
       gemfile: Gemfile-old-ruby
-    - rvm: "2.0.0"
+    - rvm: 2.0
       gemfile: Gemfile-old-ruby
-    - rvm: "2.1.0"
+    - rvm: 2.1
       gemfile: Gemfile-old-ruby
-    - rvm: "2.1.5"
+    - rvm: 2.2
       gemfile: Gemfile-old-ruby
-    - rvm: "2.2.1"
-      gemfile: Gemfile-old-ruby
-    - rvm: "2.2.2"
-    - rvm: "2.3.0"
-    - rvm: "2.3.3"
-    - rvm: "2.4.1"
-    - rvm: "2.5.7"
-    - rvm: "2.6.5"
+    - rvm: 2.3
+    - rvm: 2.4
+    - rvm: 2.5
+    - rvm: 2.6
