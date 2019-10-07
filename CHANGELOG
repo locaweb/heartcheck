@@ -1,5 +1,10 @@
 = Heart Check - Changelog
 
+== Version 1.6.0 :: 2019-10-07
+
+ * Add support for ruby 2.5 and 2.6
+ * Change required version for gem Oj to fit for all supported ruby versions
+
 == Version 1.5.1 :: 2019-05-16
 
  * Fixing '/monitoring/inspect' endpoint on rendering items of firewall
