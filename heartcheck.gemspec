@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'thor', '~> 0.19.1'
   spec.add_development_dependency 'rack-test', '~> 0.6.3'
-  spec.add_development_dependency 'oj', '~> 2.17.1'
+  spec.add_development_dependency 'oj', '~> 2.18'
   spec.add_development_dependency 'yard', '~> 0.9.5'
   spec.add_development_dependency 'concurrent-ruby', '~> 1.0.2'
 end
