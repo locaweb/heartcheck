@@ -106,6 +106,7 @@ Returns general application info and a list of dependencies' URIs, but executes 
 * [ActiveRecord](https://github.com/locaweb/heartcheck-activerecord)
 * [Cache](https://github.com/locaweb/heartcheck-cache)
 * [Cas](https://github.com/locaweb/heartcheck-cas)
+* [Paypal](https://github.com/feolea/heartcheck-paypal)
 * [Redis](https://github.com/locaweb/heartcheck-redis)
 * [Resque](https://github.com/locaweb/heartcheck-resque)
 * [Sidekiq](https://github.com/locaweb/heartcheck-sidekiq)
