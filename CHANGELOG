@@ -1,5 +1,11 @@
 = Heart Check - Changelog
 
+== Version 1.7.0 :: 2020-03-10
+
+ * Add support for ruby 2.7
+ * Remove support for ruby < 2.3
+ * Change required version for gem rack to fit for all supported ruby versions
+
 == Version 1.6.0 :: 2019-10-07
 
  * Add support for ruby 2.5 and 2.6

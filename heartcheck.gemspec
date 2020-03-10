@@ -17,11 +17,8 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  if RUBY_VERSION >= '2.6.0'
-    spec.add_runtime_dependency 'rack', '~> 2.2'
-  else
-    spec.add_runtime_dependency 'rack', '>= 1.4.0', '< 2.1'
-  end
+  spec.add_runtime_dependency 'rack', '~> 2.2'
+
   spec.add_runtime_dependency 'multi_json', '~> 1.0'
   spec.add_runtime_dependency 'net-telnet', '~> 0.1.1'
   spec.add_runtime_dependency 'sys-uname', '~> 1.0', '>= 1.0.3'
@@ -35,11 +32,7 @@ Gem::Specification.new do |spec|
     spec.add_development_dependency 'rubocop'
   end
   spec.add_development_dependency 'thor', '~> 0.19.1'
-  if RUBY_VERSION >= '2.6.0'
-    spec.add_development_dependency 'rack-test', '~> 1.1'
-  else
-    spec.add_development_dependency 'rack-test', '~> 0.6.3'
-  end
+  spec.add_development_dependency 'rack-test', '~> 1.1'
   spec.add_development_dependency 'oj', '~> 2.18'
   spec.add_development_dependency 'yard', '~> 0.9.5'
   spec.add_development_dependency 'concurrent-ruby', '~> 1.0.2'
