@@ -1,6 +1,6 @@
 = Heart Check - Changelog
 
-== Version 1.7.0 :: 2020-03-10
+== Version 2.0.0 :: 2020-03-10
 
  * Add support for ruby 2.7
  * Remove support for ruby < 2.3
