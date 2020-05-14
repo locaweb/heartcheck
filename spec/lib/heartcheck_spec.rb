@@ -1,3 +1,4 @@
+require 'heartcheck/executors/hash_response'
 describe Heartcheck do
   let(:essential)  { Heartcheck::Checks::Base.new }
   let(:functional) { Heartcheck::Checks::Base.new.tap { |c| c.functional = true } }
@@ -22,7 +23,17 @@ describe Heartcheck do
   end
 
   describe '#executor' do
+    context 'with hash_response' do
+      before(:each) { described_class.instance_variable_set :@executor, nil }
+      it 'returns a Heartcheck::Executors::HashResponse' do
+        described_class.setup hash_response: true do |monitor|
+          expect(monitor.executor).to be_a(Heartcheck::Executors::HashResponse)
+        end
+      end
+    end
+
     context 'with default' do
+      before(:each) { described_class.instance_variable_set :@executor, nil }
       it 'returns a Heartcheck::Executors::Base' do
         described_class.setup do |monitor|
           expect(monitor.executor).to be_a(Heartcheck::Executors::Base)
@@ -30,13 +41,13 @@ describe Heartcheck do
       end
     end
 
-    context 'with custom' do
+    context 'with custom' do   
       it 'returns a custom custom executor' do
         described_class.executor = 'lala'
         expect(described_class.executor).to be_a(String)
       end
     end
-
+    
     context 'with threaded' do
       it 'returns a threaded  executor' do
         described_class.use_threaded_executor!
