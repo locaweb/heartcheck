@@ -13,12 +13,11 @@ module Heartcheck
     # @attr [Array<Checks>] the checks to use when checking
     attr_accessor :checks
 
-    # @attr [Heartcheck::Executors::Base] or [Heartcheck::Executors::HashResponse]
-    # the checks executor backend
+    # @attr [Heartcheck::Executors::Base] the checks executor backend
     attr_accessor :executor
 
     # @attr [Boolean] the option for using a hash response or an array response
-    attr_reader :hash_response
+    attr_reader :hash_formatter
 
     # @attr_writer [Object] change the default logger
     attr_writer :logger
@@ -43,7 +42,7 @@ module Heartcheck
     #
     # @return [void]
     def setup(options = {})
-      @hash_response = options.fetch(:hash_response, false)
+      @hash_formatter = options.fetch(:hash_formatter, false)
       yield(self)
     end
 
@@ -100,13 +99,18 @@ module Heartcheck
       checks.select { |ctx| ctx.respond_to?(:info) }
     end
 
+    # an executor class that respond to execute(checkers)
+    #
+    # @return [Heartcheck::Services::ResponseFormatter] or nil
+    def formatter
+      @formatter ||= Heartcheck::Services::ResponseFormatter.new(hash_formatter)
+    end
+
     # an executor class that respond to dispatch(checkers)
     #
-    # @return [Heartcheck::Executors::Base] or [Heartcheck::Executors::HashResponse]
+    # @return [Heartcheck::Executors::Base]
     def executor
-      @executor ||= hash_response ?
-        Heartcheck::Executors::HashResponse.new :
-        Heartcheck::Executors::Base.new
+      @executor ||= Heartcheck::Executors::Base.new
     end
 
     # change current executor to a threaded implementation

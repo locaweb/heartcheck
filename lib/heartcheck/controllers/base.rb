@@ -13,10 +13,14 @@ module Heartcheck
       protected
 
       def check(who)
-        MultiJson.dump(executor.dispatch(Heartcheck.send("#{who}_checks")))
+        checks = executor.dispatch(Heartcheck.send("#{who}_checks"))
+        MultiJson.dump(formatter.execute(checks))
       end
 
       private
+      def formatter
+        Heartcheck.formatter
+      end
 
       def executor
         Heartcheck.executor
