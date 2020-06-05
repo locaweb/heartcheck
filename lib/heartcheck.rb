@@ -16,8 +16,8 @@ module Heartcheck
     # @attr [Heartcheck::Executors::Base] the checks executor backend
     attr_accessor :executor
 
-    # @attr [Boolean] the option for using a hash response or an array response
-    attr_reader :hash_formatter
+    # @attr [Heartcheck::Executors::Base] type of response format
+    attr_accessor :formatter
 
     # @attr_writer [Object] change the default logger
     attr_writer :logger
@@ -41,8 +41,7 @@ module Heartcheck
     #   end
     #
     # @return [void]
-    def setup(options = {})
-      @hash_formatter = options.fetch(:hash_formatter, false)
+    def setup
       yield(self)
     end
 
@@ -99,11 +98,18 @@ module Heartcheck
       checks.select { |ctx| ctx.respond_to?(:info) }
     end
 
-    # an executor class that respond to execute(checkers)
+    # an formatter class that respond to format(checkers)
     #
-    # @return [Heartcheck::Services::ResponseFormatter] or nil
+    # @return [Heartcheck::Services::Formatters::Base] or nil
     def formatter
-      @formatter ||= Heartcheck::Services::ResponseFormatter.new(hash_formatter)
+      @formatter ||= Heartcheck::Services::Formatters::Base.new
+    end
+
+    # change current formatter to a hash response
+    #
+    # @return [Heartcheck::Services::Formatters::HashResponse]
+    def use_hash_formatter!
+      self.formatter = Heartcheck::Services::Formatters::HashResponse.new
     end
 
     # an executor class that respond to dispatch(checkers)

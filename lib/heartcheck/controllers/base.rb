@@ -14,7 +14,7 @@ module Heartcheck
 
       def check(who)
         checks = executor.dispatch(Heartcheck.send("#{who}_checks"))
-        MultiJson.dump(formatter.execute(checks))
+        MultiJson.dump(formatter.format(checks))
       end
 
       private
