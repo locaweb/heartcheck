@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'rubygems'
 require 'optparse'
-$LOAD_PATH.push File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __dir__)
 
 require 'heartcheck'
 require 'heartcheck/generators'
@@ -15,7 +16,7 @@ optparse = OptionParser.new do |opts|
     exit
   end
 
-  if ARGV.size != 1 || !%w(rails sinatra padrino).include?(ARGV[0])
+  if ARGV.size != 1 || !%w[rails sinatra padrino].include?(ARGV[0])
     puts opts
     exit
   end
