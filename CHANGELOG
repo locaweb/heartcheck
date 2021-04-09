@@ -1,6 +1,6 @@
 = Heart Check - Changelog
 
-== UNRELEASED
+== Version 2.1.0 :: 2021-04-09
 
  * Add support for response formatters and a single hash formatter
 
