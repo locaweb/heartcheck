@@ -2,18 +2,11 @@ module Heartcheck
   module Formatters
     class HashResponse
       def format(checks)
-        checks.map do |check|
-          edit_hash(check)
-        end.reduce({}, :merge)
-      end
+        checks.each_with_object({}) do |check, response|
+          name = check.keys.first
+          result = check.delete(name)
 
-      private
-
-      def edit_hash(check)
-        check.tap do |obj|
-          value = obj.values.first.merge(Hash[:time => obj[:time]])
-          obj.delete(:time)
-          obj.merge!(Hash[obj.keys.first => value])
+          response[name] = result.merge(check)
         end
       end
     end
