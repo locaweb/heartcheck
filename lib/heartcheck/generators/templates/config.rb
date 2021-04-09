@@ -64,44 +64,46 @@ Heartcheck.setup do |monitor|
 
   # Firewall
   # check with telnet if the firewall is open to conect to the service
-  monitor.add :firewall do |c|
+  # monitor.add :firewall do |c|
     # you can add service wth (host and port) or (url)
-    c.add_service(host: 'lala.com', port: 80)
-    c.add_service(url: 'http://lalal.com')
+    # c.add_service(host: 'example.com', port: 80)
+    # c.add_service(url: 'http://example.com')
 
     # add dynamic services when you need it run after initializer
-    c.register_dynamic_services do
-      Pmta.all.map { |p| { host: p.host, port: 25 } }
-    end
+    # c.register_dynamic_services do
+    #   Pmta.all.map { |p| { host: p.host, port: 25 } }
+    # end
 
     # to customize default error message, the default is:
     # "connection refused on: #{service.host}:#{service.port}"
     # params
     # errors:  Array           => errors to show on page
     # service: FirewallService => object that respond to :host and :port
-    c.on_error do |errors, service|
-      errors << "Custom error message for #{service.host}"
-    end
-  end
+    # c.on_error do |errors, service|
+      # errors << "Custom error message for #{service.host}"
+    # end
+  # end
 
   # Redis
   # check if you redis conection is working
   # you need to send a redis conection as a service
-  monitor.add :redis do |c|
-    c.add_service(name: 'Redis', connection: Resque.redis)
-  end
+  # # Before use install the plugin https://github.com/locaweb/heartcheck-redis
+  # monitor.add :redis do |c|
+  #   c.add_service(name: 'Redis', connection: Redis.new)
+  # end
 
   # Cache
   # check if your cache is working
   # you can pass any kind of cache, but this need to respond to
   # set, get and delete
-  monitor.add :cache do |c|
-    c.add_service(name: 'memcached', connection: Rails.cache.instance_variable_get('@data'))
-  end
+  # Before use install the plugin https://github.com/locaweb/heartcheck-cache
+  # monitor.add :cache do |c|
+  #   c.add_service(name: 'memcached', connection: Rails.cache.instance_variable_get('@data'))
+  # end
 
   # WatchFile
-  # check if a preloaded file as changed from the disk
-  monitor.add :watch_file do |c|
-    c.add_service(file: 'version.json')
-  end
+  # check if a preloaded JSON file as changed from the disk
+  # monitor.add :watch_file do |c|
+    # c.add_service(file: 'package.json')
+  # end
 end
