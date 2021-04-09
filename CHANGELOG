@@ -1,5 +1,9 @@
 = Heart Check - Changelog
 
+== UNRELEASED
+
+ * Add support for response formatters and a single hash formatter
+
 == Version 2.0.0 :: 2020-03-10
 
  * Add support for ruby 2.7
