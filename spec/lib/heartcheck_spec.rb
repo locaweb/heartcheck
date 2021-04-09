@@ -24,19 +24,19 @@ describe Heartcheck do
   describe '#format' do
     context 'with default' do
       before(:each) { described_class.instance_variable_set :@formatter, nil }
-      it 'returns a Heartcheck::Services::Formatters::Base' do
+      it 'returns a Heartcheck::Formatters::Base' do
         described_class.setup do |monitor|
-          expect(monitor.formatter).to be_a(Heartcheck::Services::Formatters::Base)
+          expect(monitor.formatter).to be_a(Heartcheck::Formatters::Base)
         end
       end
     end
 
     context 'with hash formatter' do
       before(:each) { described_class.instance_variable_set :@formatter, nil }
-      it 'returns a Heartcheck::Services::Formatters::Base' do
+      it 'returns a Heartcheck::Formatters::Base' do
         described_class.setup do |monitor|
           described_class.use_hash_formatter!
-          expect(monitor.formatter).to be_a(Heartcheck::Services::Formatters::HashResponse)
+          expect(monitor.formatter).to be_a(Heartcheck::Formatters::HashResponse)
         end
       end
     end
