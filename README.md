@@ -101,6 +101,11 @@ Returns general application info and a list of dependencies' URIs, but executes 
 
     /monitoring/inspect
 
+## Response formatting
+
+An optional formatter may be set for the monitoring response. We provide the default format
+using a list of hashes and one with a single Hash. Please check `Heartcheck.use_hash_formatter!`
+
 ## Plugins
 
 * [ActiveRecord](https://github.com/locaweb/heartcheck-activerecord)

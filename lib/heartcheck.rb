@@ -6,6 +6,8 @@ module Heartcheck
   require 'heartcheck/errors'
   require 'heartcheck/services'
   require 'heartcheck/logger'
+  require 'heartcheck/formatters/base'
+  require 'heartcheck/formatters/hash_response'
 
   @checks = []
 
@@ -15,6 +17,9 @@ module Heartcheck
 
     # @attr [Heartcheck::Executors::Base] the checks executor backend
     attr_accessor :executor
+
+    # @attr [Heartcheck::Formatters::Base] formats heart check result to something JSON encodedable
+    attr_accessor :formatter
 
     # @attr_writer [Object] change the default logger
     attr_writer :logger
@@ -93,6 +98,20 @@ module Heartcheck
     # @return [Array<Check>] checks that respond to :info
     def info_checks
       checks.select { |ctx| ctx.respond_to?(:info) }
+    end
+
+    # transforms check results to a response
+    #
+    # @return [Heartcheck::Formatters::Base] or nil
+    def formatter
+      @formatter ||= Heartcheck::Formatters::Base.new
+    end
+
+    # change current formatter to a hash response
+    #
+    # @return [Heartcheck::Formatters::HashResponse]
+    def use_hash_formatter!
+      self.formatter = Heartcheck::Formatters::HashResponse.new
     end
 
     # an executor class that respond to dispatch(checkers)
