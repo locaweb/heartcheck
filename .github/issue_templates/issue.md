@@ -1,43 +1,41 @@
-# Description
+# Issue Template
  
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+## Prerequisites
  
-## Type of branch
-Please delete options that are not relevant.
+Please answer the following questions for yourself before submitting an issue. **YOU MAY DELETE THE PREREQUISITES SECTION.**
  
-Feature # (issue)
-Bug # (issue)
-Hotfix # (issue)
+- [ ] I am running the latest version
+- [ ] I checked the documentation and found no answer
+- [ ] I checked to make sure that this issue has not already been filed
+- [ ] I'm reporting the issue to the correct repository (for multi-repository projects)
  
-## Type of change
+## Context
  
-Please delete options that are not relevant.
+Please provide any relevant information about your setup. This is important in case the issue is not reproducible except for under certain conditions.
  
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
+* Tag version realease:
  
-# How Has This Been Tested?
+## Expected Behavior
  
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+Please describe the behavior you are expecting
  
-- [ ] Test A
-- [ ] Test B
+## Current Behavior
  
-**Test Configuration**:
-* Firmware version:
-* Hardware:
-* Toolchain:
-* SDK:
+What is the current behavior?
  
-# Checklist:
+## Failure Information (for bugs)
  
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published in downstream modules
+Please help provide information about the failure if this is a bug. If it is not a bug, please remove the rest of this template.
+ 
+### Steps to Reproduce
+ 
+Please provide detailed steps for reproducing the issue.
+ 
+1. step 1
+2. step 2
+3. you get it...
+ 
+### Failure Logs
+ 
+Please include any relevant log snippets or files here.
+ 
