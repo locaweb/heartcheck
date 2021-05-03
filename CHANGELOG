@@ -1,5 +1,9 @@
 = Heart Check - Changelog
 
+== Version 2.2.0 :: 2021-05-03
+ * Commented examples of template to not raise erros when installed
+ * Minor text fix
+
 == Version 2.1.0 :: 2021-04-09
 
  * Add support for response formatters and a single hash formatter
