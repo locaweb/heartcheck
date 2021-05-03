@@ -29,7 +29,7 @@ module Heartcheck
             'mount Heartcheck::App.new, at: "/monitoring"',
             '',
             '# to mount a caching instance:',
-            '# mount Heartcheck::CachingApp.new(HeartCheck::App.new, 300),',
+            '# mount Heartcheck::CachingApp.new(Heartcheck::App.new, 300),',
             '#   at: "/cached-monitoring" # 300 is the optional cache TTL'
           ].join("\n")
         )
