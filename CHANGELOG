@@ -1,5 +1,9 @@
 = Heart Check - Changelog
 
+== Version 2.3.0 :: 2021-05-03
+ * Add Github templates (issues/pull request)
+ * Minor text fix
+
 == Version 2.2.0 :: 2021-05-03
  * Commented examples of template to not raise erros when installed
  * Minor text fix
