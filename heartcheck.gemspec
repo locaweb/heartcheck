@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 3.5.0'
   spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubycritic'
   spec.add_development_dependency 'thor', '~> 0.19.1'
   spec.add_development_dependency 'yard', '~> 0.9.5'
 end
