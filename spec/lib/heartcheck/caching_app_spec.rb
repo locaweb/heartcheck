@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rack/test'
 require 'heartcheck/caching_app'
 
@@ -10,7 +12,7 @@ module Heartcheck
     let(:cache) { double(Heartcheck::CachingApp::Cache) }
     let(:super_app) { double(Heartcheck::App) }
     let(:controller) { Heartcheck::Controllers::Essential }
-    let(:response) { [200, { 'Content-type' => 'application/json' }, ["[]"]] }
+    let(:response) { [200, { 'Content-type' => 'application/json' }, ['[]']] }
 
     before do
       allow(super_app).to receive(:call).with(anything).and_return(response)
@@ -22,7 +24,7 @@ module Heartcheck
 
       get '/'
 
-      expect(last_response.body).to eq("[]")
+      expect(last_response.body).to eq('[]')
       expect(super_app).to have_received(:call)
     end
 
@@ -63,7 +65,7 @@ module Heartcheck
       it 'forwards to the original app' do
         get '/not-found'
 
-        expect(last_response.body).to eq("[]")
+        expect(last_response.body).to eq('[]')
         expect(super_app).to have_received(:call)
       end
 

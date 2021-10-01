@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'thor/group'
 
 module Heartcheck
@@ -46,8 +48,9 @@ module Heartcheck
             '# map "/cached/monitoring" do',
             '#   use Heartcheck::CachingApp, 300 # 300 is the optional ttl',
             '#   use Heartcheck::App',
-            '# end',
-          ].join("\n"))
+            '# end'
+          ].join("\n")
+        )
       end
     end
 

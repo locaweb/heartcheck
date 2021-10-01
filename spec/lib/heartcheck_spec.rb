@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Heartcheck do
   let(:essential)  { Heartcheck::Checks::Base.new }
   let(:functional) { Heartcheck::Checks::Base.new.tap { |c| c.functional = true } }
@@ -96,7 +98,7 @@ describe Heartcheck do
     let(:name) { :process }
     let(:plugin) { Heartcheck::Checks::Process.new }
 
-    let(:blk) { lambda { |_| } }
+    let(:blk) { ->(_) {} }
 
     before do
       allow(Heartcheck::Checks::Process).to receive(:new)
@@ -116,7 +118,7 @@ describe Heartcheck do
       )
     end
 
-    let(:blk) { lambda { |c| c.this_is_terrible } }
+    let(:blk) { ->(c) { c.this_is_terrible } }
 
     it 'instantiates the class passing the given block' do
       expect(plugin).to receive(:this_is_terrible)

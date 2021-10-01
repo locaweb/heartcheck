@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Heartcheck
   module Controllers
     describe Essential do
@@ -6,15 +8,15 @@ module Heartcheck
       describe '#index' do
         subject(:index) { controller.index }
 
-        let(:check_01) { { dummy1: { status: :ok }, time: 1100 } }
-        let(:check_02) { { dummy2: { status: :ok }, time: 100 } }
+        let(:check1) { { dummy1: { status: :ok }, time: 1100 } }
+        let(:check2) { { dummy2: { status: :ok }, time: 100 } }
 
         before do
           expect(Time).to receive(:now).and_return(
-                            # millisec time calc :p
-                            0.1, 1.2, # (1.2 - 0.1) * 1000.0 = 1100
-                            2.9, 3.0  # (3.0 - 2.9) * 1000.0 = 100
-                          )
+            # millisec time calc :p
+            0.1, 1.2, # (1.2 - 0.1) * 1000.0 = 1100
+            2.9, 3.0  # (3.0 - 2.9) * 1000.0 = 100
+          )
 
           Heartcheck.setup do |monitor|
             monitor.add :dummy1 do |c|
@@ -26,7 +28,7 @@ module Heartcheck
           end
         end
 
-        it { is_expected.to eq(MultiJson.dump([check_01, check_02])) }
+        it { is_expected.to eq(MultiJson.dump([check1, check2])) }
       end
     end
   end

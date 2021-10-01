@@ -1,1 +1,3 @@
-require "heartcheck/generators/generator"
+# frozen_string_literal: true
+
+require 'heartcheck/generators/generator'

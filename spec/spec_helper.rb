@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'heartcheck'
 require 'pry'
 require 'oj'
 
-Dir['./spec/support/**/*.rb'].each{ |helper_file| require helper_file }
+Dir['./spec/support/**/*.rb'].sort.each { |helper_file| require helper_file }
 
 Oj.default_options = { mode: :compat }
 

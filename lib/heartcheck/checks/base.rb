@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Heartcheck
   module Checks
     # Base check that contains the common functionality for chechs
@@ -9,7 +11,7 @@ module Heartcheck
       #
       # @return [Boolean] (default: false)
       attr_accessor :functional
-      alias_method :functional?, :functional
+      alias functional? functional
 
       # When it is true the check will work just for `/dev` route.
       #   you can use it to create some check is not essential/functional for you app.
@@ -17,7 +19,7 @@ module Heartcheck
       #
       # @return [Boolean] (default: false)
       attr_accessor :dev
-      alias_method :dev?, :dev
+      alias dev? dev
 
       # The name for identify the check in the result page
       #
@@ -104,7 +106,6 @@ module Heartcheck
         @services << service
       end
 
-
       # It is used to add a service that will use when check run.
       #
       # @return [Array<Hash>]
@@ -143,7 +144,7 @@ module Heartcheck
 
       def informations
         info
-      rescue => e
+      rescue StandardError => e
         { 'error' => e.message }
       end
 
@@ -173,9 +174,9 @@ module Heartcheck
               validate
             end
           end
-        rescue Heartcheck::Errors::Warning => w
-          @errors = [{ type: 'warning', message: w.message }]
-        rescue => e
+        rescue Heartcheck::Errors::Warning => e
+          @errors = [{ type: 'warning', message: e.message }]
+        rescue StandardError => e
           @errors = [e.message]
         end
         @errors

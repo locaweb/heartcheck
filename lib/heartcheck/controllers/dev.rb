@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Heartcheck
   module Controllers
     class Dev < Base
@@ -27,7 +29,7 @@ module Heartcheck
       def time_diff
         start_time = Time.now
         yield
-        '%.2f ms' % ((Time.now - start_time) * 1_000)
+        format('%.2f ms', ((Time.now - start_time) * 1_000))
       end
     end
   end

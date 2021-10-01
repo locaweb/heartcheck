@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Heartcheck
   module Controllers
     describe Dev do
@@ -8,15 +10,15 @@ module Heartcheck
 
         let(:total_time) { { total_execution_time: '0.00 ms' } }
 
-        let(:check_01) do
+        let(:check1) do
           { dummy1: { status: :ok }, execution_time: '0.00 ms' }
         end
 
-        let(:check_02) do
+        let(:check2) do
           { dummy2: { status: :ok }, execution_time: '0.00 ms' }
         end
 
-        let(:result) { [check_01, check_02, total_time] }
+        let(:result) { [check1, check2, total_time] }
 
         before do
           allow(Time).to receive(:now).and_return(Time.now)

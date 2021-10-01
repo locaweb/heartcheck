@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Heartcheck
   module Controllers
     describe Info do
@@ -6,8 +8,8 @@ module Heartcheck
       describe '#index' do
         subject(:index) { controller.index }
 
-        let(:info_01) { 'dummy1' }
-        let(:info_02) { 'dummy2' }
+        let(:info1) { 'dummy1' }
+        let(:info2) { 'dummy2' }
 
         before do
           Heartcheck.setup do |monitor|
@@ -21,7 +23,7 @@ module Heartcheck
           end
         end
 
-        it { is_expected.to eq(MultiJson.dump([info_01, info_02])) }
+        it { is_expected.to eq(MultiJson.dump([info1, info2])) }
       end
     end
   end

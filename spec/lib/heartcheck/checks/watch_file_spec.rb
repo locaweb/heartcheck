@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Heartcheck::Checks::WatchFile do
   subject do
     described_class.new.tap do |config|
@@ -15,10 +17,10 @@ describe Heartcheck::Checks::WatchFile do
 
     context 'the watched file have new modifications' do
       it 'array erros should not be empty' do
-        allow(subject).to receive(:installed).and_return({bacon: true})
-        expect { subject.validate }.
-          to change { subject.instance_variable_get(:@errors).size }.
-              from(0).to(1)
+        allow(subject).to receive(:installed).and_return({ bacon: true })
+        expect { subject.validate }
+          .to change { subject.instance_variable_get(:@errors).size }
+          .from(0).to(1)
       end
     end
   end

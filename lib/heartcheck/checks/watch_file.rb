@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 
 module Heartcheck
@@ -9,8 +11,8 @@ module Heartcheck
 
       def validate
         services.each do |service|
-          if not service[:runtime].eql? installed(service[:file])
-            @errors << "App outdated, check /monitoring/info for more details!"
+          unless service[:runtime].eql? installed(service[:file])
+            @errors << 'App outdated, check /monitoring/info for more details!'
           end
         end
       end

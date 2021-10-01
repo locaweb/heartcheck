@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'rack'
 require 'heartcheck/controllers/base'
 
-Dir.glob(File.expand_path('../controllers/*.rb', __FILE__))
-  .each { |x| require x }
+Dir.glob(File.expand_path('controllers/*.rb', __dir__)).sort.each { |x| require x }
 
 # A web app that's use rack
 module Heartcheck
@@ -19,7 +20,7 @@ module Heartcheck
       '/inspect' => Controllers::Inspect,
       '/health_check' => Controllers::HealthCheck,
       '/environment' => Controllers::Environment
-    }
+    }.freeze
 
     # Sets up the rack application.
     #
@@ -58,7 +59,7 @@ module Heartcheck
     # @return [String] a response body
     def dispatch_action(req)
       controller = ROUTE_TO_CONTROLLER[req.path_info]
-      fail Heartcheck::Errors::RoutingError if controller.nil?
+      raise Heartcheck::Errors::RoutingError if controller.nil?
 
       Logger.info "Start [#{controller}] from #{req.ip} at #{Time.now}"
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Heartcheck.setup do |monitor|
   # monitor has a default logger but you can use yours
   # default value: Logger.new(STDOUT)
@@ -61,27 +63,26 @@ Heartcheck.setup do |monitor|
   #   end
   # end
 
-
   # Firewall
   # check with telnet if the firewall is open to conect to the service
   # monitor.add :firewall do |c|
-    # you can add service wth (host and port) or (url)
-    # c.add_service(host: 'example.com', port: 80)
-    # c.add_service(url: 'http://example.com')
+  # you can add service wth (host and port) or (url)
+  # c.add_service(host: 'example.com', port: 80)
+  # c.add_service(url: 'http://example.com')
 
-    # add dynamic services when you need it run after initializer
-    # c.register_dynamic_services do
-    #   Pmta.all.map { |p| { host: p.host, port: 25 } }
-    # end
+  # add dynamic services when you need it run after initializer
+  # c.register_dynamic_services do
+  #   Pmta.all.map { |p| { host: p.host, port: 25 } }
+  # end
 
-    # to customize default error message, the default is:
-    # "connection refused on: #{service.host}:#{service.port}"
-    # params
-    # errors:  Array           => errors to show on page
-    # service: FirewallService => object that respond to :host and :port
-    # c.on_error do |errors, service|
-      # errors << "Custom error message for #{service.host}"
-    # end
+  # to customize default error message, the default is:
+  # "connection refused on: #{service.host}:#{service.port}"
+  # params
+  # errors:  Array           => errors to show on page
+  # service: FirewallService => object that respond to :host and :port
+  # c.on_error do |errors, service|
+  # errors << "Custom error message for #{service.host}"
+  # end
   # end
 
   # Redis
@@ -104,6 +105,6 @@ Heartcheck.setup do |monitor|
   # WatchFile
   # check if a preloaded JSON file as changed from the disk
   # monitor.add :watch_file do |c|
-    # c.add_service(file: 'package.json')
+  # c.add_service(file: 'package.json')
   # end
 end

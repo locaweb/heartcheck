@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'heartcheck/caching_app/cache'
 
 # A rack middleware to wrap around {Heartcheck::App} in a cache

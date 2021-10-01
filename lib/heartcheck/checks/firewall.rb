@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Heartcheck
   module Checks
     class Firewall < Base
@@ -7,12 +9,10 @@ module Heartcheck
 
       def validate
         services.each do |service|
-          begin
-            Net::Telnet.new(service.params).close
-          rescue Errno::ECONNREFUSED; nil
-          rescue
-            append_error(service)
-          end
+          Net::Telnet.new(service.params).close
+        rescue Errno::ECONNREFUSED; nil
+        rescue StandardError
+          append_error(service)
         end
       end
 

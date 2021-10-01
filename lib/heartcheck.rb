@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Heartcheck
   require 'logger'
   require 'heartcheck/app'
@@ -65,11 +67,11 @@ module Heartcheck
       class_name = options.fetch(:class) { constantize(name) }
       instance = Checks.const_get(class_name).new
 
-      if block_given?
-        checks << instance.tap(&block)
-      else
-        checks << instance
-      end
+      checks << if block_given?
+                  instance.tap(&block)
+                else
+                  instance
+                end
     end
 
     # filter checks that are essential
@@ -90,7 +92,7 @@ module Heartcheck
     #
     # @return [Array<Check>] checks that are not functional
     def dev_checks
-      checks.select { |ctx| !ctx.functional? }
+      checks.reject(&:functional?)
     end
 
     # filter checks that has some information
@@ -126,8 +128,8 @@ module Heartcheck
     #
     # @return [Heartcheck::Executors::Threaded]
     def use_threaded_executor!
-      require "concurrent"
-      require "heartcheck/executors/threaded"
+      require 'concurrent'
+      require 'heartcheck/executors/threaded'
 
       self.executor = Heartcheck::Executors::Threaded.new
     end
@@ -139,7 +141,7 @@ module Heartcheck
     #
     # @return [Logger] a ruby logger to STDOUT and info level
     def default_logger
-      log = ::Logger.new(STDOUT)
+      log = ::Logger.new($stdout)
       log.level = ::Logger::INFO
       log
     end
