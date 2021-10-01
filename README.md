@@ -7,7 +7,7 @@ service, an API, etc.
 
 [![Build Status](https://travis-ci.org/locaweb/heartcheck.svg)](https://travis-ci.org/locaweb/heartcheck)
 [![Code Climate](https://codeclimate.com/github/locaweb/heartcheck/badges/gpa.svg)](https://codeclimate.com/github/locaweb/heartcheck)
-[![Ebert](https://ebertapp.io/github/locaweb/heartcheck.svg)](https://ebertapp.io/github/locaweb/heartcheck)
+[![SourceLevel](https://app.sourcelevel.io/github/locaweb/-/heartcheck.svg)](https://app.sourcelevel.io/github/locaweb/-/heartcheck)
 
 ## Installation
 
