@@ -121,3 +121,16 @@ using a list of hashes and one with a single Hash. Please check `Heartcheck.use_
 
 Bug reports and pull requests are welcome on GitHub at
 https://github.com/locaweb/heartcheck.
+
+#### Docker
+
+Heartcheck can be setup with Docker and Docker Compose on macOS or Linux systems,
+so that you don't need to install ruby and it's dependencies via rbenv or rvm.
+
+Just do your setup locally by running:
+
+```
+./scripts/heartcheck setup
+```
+
+Run `./scripts/heartcheck -h` to see available options, such as bash, rspec, etc.
