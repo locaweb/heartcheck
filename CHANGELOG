@@ -3,6 +3,9 @@
 == Version 2.4.0 :: 2021-10-01
  * Add docker to facilitate development
 
+== Version 2.3.1 :: 2021-06-14
+ * Move and rename GitHub template files to correct folder
+
 == Version 2.3.0 :: 2021-05-03
  * Add Github templates (issues/pull request)
  * Minor text fix
