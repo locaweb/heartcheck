@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Heartcheck
   module Controllers
     describe Environment do
@@ -11,7 +13,7 @@ module Heartcheck
 
         let(:system_info_example) { Struct.new(:example_key).new('example_value') }
 
-        context "given Rails is used" do
+        context 'given Rails is used' do
           before do
             stub_const('Rails::VERSION::STRING', '5.0.0')
           end
@@ -19,9 +21,9 @@ module Heartcheck
           it 'gets info from the right constants and functions' do
             allow(Sys::Uname).to receive(:uname).and_return(system_info_example)
             is_expected.to include(
-              :system_info => { :example_key => 'example_value' },
-              :ruby_version => '2.4.0',
-              :rails_version => '5.0.0'
+              system_info: { example_key: 'example_value' },
+              ruby_version: '2.4.0',
+              rails_version: '5.0.0'
             )
             expect(Sys::Uname).to have_received(:uname)
           end
@@ -59,13 +61,13 @@ module Heartcheck
           end
         end
 
-        context "given Rails is not used" do
+        context 'given Rails is not used' do
           it 'gets the info indicating Rails is not used' do
             allow(Sys::Uname).to receive(:uname).and_return(system_info_example)
             is_expected.to include(
-              :system_info => { :example_key => 'example_value' },
-              :ruby_version => '2.4.0',
-              :rails_version => '(none)'
+              system_info: { example_key: 'example_value' },
+              ruby_version: '2.4.0',
+              rails_version: '(none)'
             )
             expect(Sys::Uname).to have_received(:uname)
           end

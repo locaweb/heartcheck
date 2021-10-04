@@ -1,7 +1,9 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   NewCops: enable
-  Include:
-    - '**/Rakefile'
+  TargetRubyVersion: 2.7
+  SuggestExtensions: false
 
 Style/Documentation:
   Enabled: false

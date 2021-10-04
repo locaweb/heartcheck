@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Heartcheck
   # A simple Interface to log messages
   class Logger
@@ -36,8 +38,6 @@ module Heartcheck
     def self.error(message)
       logger(:error, message)
     end
-
-    private
 
     # Sent the message to Heartcheck logger
     # that you can configure

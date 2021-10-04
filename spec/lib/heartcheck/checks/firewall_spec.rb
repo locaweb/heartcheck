@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Heartcheck::Checks::Firewall do
@@ -81,8 +83,10 @@ describe Heartcheck::Checks::Firewall do
       end
 
       it 'calls Net::Telnet with valid params of proxy' do
-        expect(Net::Telnet).to receive(:new).with('Port' => 8888, 'Host' => 'uriproxy.com.br', 'Timeout' => 2).ordered.and_return('proxy')
-        expect(Net::Telnet).to receive(:new).with('Port' => 443,  'Host' => 'lala.com',        'Timeout' => 2, 'Proxy' => 'proxy').ordered
+        expect(Net::Telnet).to receive(:new).with('Port' => 8888, 'Host' => 'uriproxy.com.br',
+                                                  'Timeout' => 2).ordered.and_return('proxy')
+        expect(Net::Telnet).to receive(:new).with('Port' => 443,  'Host' => 'lala.com', 'Timeout' => 2,
+                                                  'Proxy' => 'proxy').ordered
 
         subject.validate
       end

@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 require 'heartcheck/executors/threaded'
 
 module Heartcheck
   module Executors
     describe Threaded do
       subject do
-        Heartcheck.setup do |monitor|
-          monitor.use_threaded_executor!
-        end
+        Heartcheck.setup(&:use_threaded_executor!)
 
         Heartcheck.executor
       end
@@ -15,7 +15,7 @@ module Heartcheck
         let(:registered) { 3 }
 
         let(:checkers) do
-          registered.times.collect do |current|
+          registered.times.collect do |_current|
             double.tap do |checker|
               expect(checker).to receive(:check).and_return({ current: 'ok' })
             end
@@ -27,13 +27,13 @@ module Heartcheck
           subject.dispatch(checkers)
         end
 
-        it "should have a :time key in the checker response" do
+        it 'should have a :time key in the checker response' do
           subject.dispatch(checkers).each do |current|
             expect(current).to include(:time)
           end
         end
 
-        it "should have a float value (time key)" do
+        it 'should have a float value (time key)' do
           subject.dispatch(checkers).each do |current|
             expect(current[:time]).to be_a(Float)
           end

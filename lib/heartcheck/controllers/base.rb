@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rack'
 require 'multi_json'
 
@@ -7,7 +9,7 @@ module Heartcheck
   module Controllers
     class Base
       def index
-        fail NotImplementError
+        raise NotImplementError
       end
 
       protected
@@ -18,6 +20,7 @@ module Heartcheck
       end
 
       private
+
       def formatter
         Heartcheck.formatter
       end

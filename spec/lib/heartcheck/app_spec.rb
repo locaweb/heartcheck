@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'rack/test'
 
@@ -40,11 +42,11 @@ describe Heartcheck::App do
   context 'on GET /dev' do
     before do
       Heartcheck.setup do |monitor|
-        log = Logger.new(STDOUT)
+        log = Logger.new($stdout)
         log.level = 4
         monitor.logger = log
         monitor.add :base do |c|
-          c.name = "check"
+          c.name = 'check'
         end
       end
       get '/dev'
