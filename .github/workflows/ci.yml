@@ -19,7 +19,9 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-          bundler: 1.17.3
 
       - name: Run tests
         run: bundle exec rspec
+
+      - name: Run linter
+        run: bundle exec rubocop
