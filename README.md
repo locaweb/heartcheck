@@ -5,7 +5,7 @@ declare service checks and an URI that returns the status for each service.
 With this gem you can monitor if your app has access to the database, a cache
 service, an API, etc.
 
-[![Build Status](https://travis-ci.org/locaweb/heartcheck.svg)](https://travis-ci.org/locaweb/heartcheck)
+[![Build Status](https://github.com/locaweb/heartcheck/actions/workflows/ci.yml/badge.svg)](https://github.com/locaweb/heartcheck/actions/workflows/ci.yml)
 [![Code Climate](https://codeclimate.com/github/locaweb/heartcheck/badges/gpa.svg)](https://codeclimate.com/github/locaweb/heartcheck)
 [![Ebert](https://ebertapp.io/github/locaweb/heartcheck.svg)](https://ebertapp.io/github/locaweb/heartcheck)
 
