@@ -38,9 +38,6 @@ module Heartcheck
             expect(Sys::Uname).to have_received(:uname)
           end
 
-
-
-
           it 'gets the info in the expected format' do
             expect(system_info).to be_a(Hash)
             expect(system_info).to include(

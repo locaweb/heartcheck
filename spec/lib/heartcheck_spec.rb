@@ -121,7 +121,6 @@ describe Heartcheck do
       )
     end
 
-
     it 'instantiates the class passing the given block' do
       expect(plugin).to receive(:this_is_terrible)
 

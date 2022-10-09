@@ -82,7 +82,6 @@ describe Heartcheck::Checks::Firewall do
       let(:port) { 443 }
       let(:proxy) { 'http://uriproxy.com.br:8888' }
 
-
       it 'calls Net::Telnet with valid params of proxy' do
         expect(Net::Telnet).to receive(:new).with('Port' => 8888, 'Host' => 'uriproxy.com.br',
                                                   'Timeout' => 2).ordered.and_return('proxy')
