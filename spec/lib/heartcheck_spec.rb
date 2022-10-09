@@ -61,7 +61,7 @@ describe Heartcheck do
     end
 
     context 'with threaded' do
-      it 'returns a threaded  executor' do
+      it 'returns a threaded executor' do
         described_class.use_threaded_executor!
         expect(described_class.executor).to be_a(Heartcheck::Executors::Threaded)
       end
