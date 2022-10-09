@@ -144,7 +144,7 @@ describe Heartcheck::Checks::Base do
         )
       end
 
-      it 'should not accumulate errors' do
+      it 'does not accumulate errors' do
         subject.check
         expect(subject.check).to eq(
           'base' => {
@@ -200,7 +200,7 @@ describe Heartcheck::Checks::Base do
         allow(subject).to receive(:info).and_return(response)
       end
 
-      it 'should show a response' do
+      it 'shows a response' do
         expect(subject.informations).to eq(response)
       end
     end

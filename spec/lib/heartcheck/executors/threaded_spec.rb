@@ -22,18 +22,18 @@ module Heartcheck
           end
         end
 
-        it 'should register a log entry for each checker' do
+        it 'registers a log entry for each checker' do
           expect(Logger).to receive(:info).exactly(registered).times
           subject.dispatch(checkers)
         end
 
-        it 'should have a :time key in the checker response' do
+        it 'has a :time key in the checker response' do
           subject.dispatch(checkers).each do |current|
             expect(current).to include(:time)
           end
         end
 
-        it 'should have a float value (time key)' do
+        it 'has a float value (time key)' do
           subject.dispatch(checkers).each do |current|
             expect(current[:time]).to be_a(Float)
           end
