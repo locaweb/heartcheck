@@ -25,7 +25,7 @@ describe Heartcheck do
 
   describe '#format' do
     context 'with default' do
-      before(:each) { described_class.instance_variable_set :@formatter, nil }
+      before { described_class.instance_variable_set :@formatter, nil }
       it 'returns a Heartcheck::Formatters::Base' do
         described_class.setup do |monitor|
           expect(monitor.formatter).to be_a(Heartcheck::Formatters::Base)
@@ -34,7 +34,7 @@ describe Heartcheck do
     end
 
     context 'with hash formatter' do
-      before(:each) { described_class.instance_variable_set :@formatter, nil }
+      before { described_class.instance_variable_set :@formatter, nil }
       it 'returns a Heartcheck::Formatters::Base' do
         described_class.setup do |monitor|
           described_class.use_hash_formatter!
