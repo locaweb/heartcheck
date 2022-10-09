@@ -96,6 +96,7 @@ describe Heartcheck do
     subject(:add) { described_class.add(name, &blk) }
 
     let(:name) { :process }
+    let(:blk) { ->(c) { c.this_is_terrible } }
     let(:plugin) { Heartcheck::Checks::Process.new }
 
     let(:blk) { ->(_) {} }
@@ -118,7 +119,6 @@ describe Heartcheck do
       )
     end
 
-    let(:blk) { ->(c) { c.this_is_terrible } }
 
     it 'instantiates the class passing the given block' do
       expect(plugin).to receive(:this_is_terrible)
