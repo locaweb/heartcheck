@@ -18,6 +18,15 @@ module Heartcheck
             stub_const('Rails::VERSION::STRING', '5.0.0')
           end
 
+          let(:rails_version) do
+            MultiJson.load(controller.index, symbolize_keys: true)[:rails_version]
+          end
+          let(:ruby_version) do
+            MultiJson.load(controller.index, symbolize_keys: true)[:ruby_version]
+          end
+          let(:system_info) do
+            MultiJson.load(controller.index, symbolize_keys: true)[:system_info]
+          end
           it 'gets info from the right constants and functions' do
             allow(Sys::Uname).to receive(:uname).and_return(system_info_example)
             expect(subject).to include(
@@ -28,17 +37,8 @@ module Heartcheck
             expect(Sys::Uname).to have_received(:uname)
           end
 
-          let(:system_info) do
-            MultiJson.load(controller.index, symbolize_keys: true)[:system_info]
-          end
 
-          let(:ruby_version) do
-            MultiJson.load(controller.index, symbolize_keys: true)[:ruby_version]
-          end
 
-          let(:rails_version) do
-            MultiJson.load(controller.index, symbolize_keys: true)[:rails_version]
-          end
 
           it 'gets the info in the expected format' do
             expect(system_info).to be_a(Hash)
