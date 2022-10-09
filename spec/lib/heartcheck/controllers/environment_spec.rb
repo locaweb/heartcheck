@@ -13,7 +13,7 @@ module Heartcheck
 
         let(:system_info_example) { Struct.new(:example_key).new('example_value') }
 
-        context 'given Rails is used' do
+        context 'when Rails is used' do
           before do
             stub_const('Rails::VERSION::STRING', '5.0.0')
           end
@@ -59,7 +59,7 @@ module Heartcheck
           end
         end
 
-        context 'given Rails is not used' do
+        context 'when Rails is not used' do
           it 'gets the info indicating Rails is not used' do
             allow(Sys::Uname).to receive(:uname).and_return(system_info_example)
             expect(subject).to include(

@@ -61,7 +61,7 @@ module Heartcheck
       end
     end
 
-    context 'on an unknown route' do
+    context 'with an unknown route' do
       it 'forwards to the original app' do
         get '/not-found'
 

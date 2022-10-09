@@ -80,7 +80,7 @@ describe Heartcheck::Checks::Base do
   end
 
   describe '#functional?' do
-    context 'default is false' do
+    context 'when functional is not set' do
       describe '#functional?' do
         subject { super().functional? }
 
@@ -88,7 +88,7 @@ describe Heartcheck::Checks::Base do
       end
     end
 
-    context 'can change value' do
+    context 'when functional is set to true' do
       before { base.functional = true }
 
       describe '#functional?' do
@@ -100,7 +100,7 @@ describe Heartcheck::Checks::Base do
   end
 
   describe '#dev?' do
-    context 'default is false' do
+    context 'when dev is not set' do
       describe '#dev?' do
         subject { super().dev? }
 
@@ -108,7 +108,7 @@ describe Heartcheck::Checks::Base do
       end
     end
 
-    context 'can change value' do
+    context 'when dev is set to true' do
       before { base.dev = true }
 
       describe '#dev?' do
@@ -212,13 +212,11 @@ describe Heartcheck::Checks::Base do
   end
 
   describe '#uri_info' do
-    context 'for the base class' do
-      it 'returns a hash with an error message' do
-        expect(subject.uri_info).to include(:error)
-        expect(subject.uri_info).not_to include(:host)
-        expect(subject.uri_info).not_to include(:port)
-        expect(subject.uri_info).not_to include(:schema)
-      end
+    it 'returns a hash with an error message' do
+      expect(subject.uri_info).to include(:error)
+      expect(subject.uri_info).not_to include(:host)
+      expect(subject.uri_info).not_to include(:port)
+      expect(subject.uri_info).not_to include(:schema)
     end
   end
 end

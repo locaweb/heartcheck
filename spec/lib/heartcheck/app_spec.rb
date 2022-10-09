@@ -26,7 +26,7 @@ describe Heartcheck::App do
     it { is_expected.to eq(200) }
   end
 
-  context 'on GET /functional' do
+  context 'with GET /functional' do
     before { get '/functional' }
 
     describe '#body' do
@@ -42,7 +42,7 @@ describe Heartcheck::App do
     end
   end
 
-  context 'on GET /dev' do
+  context 'with GET /dev' do
     before do
       Heartcheck.setup do |monitor|
         log = Logger.new($stdout)
@@ -70,7 +70,7 @@ describe Heartcheck::App do
     end
   end
 
-  context 'on GET info' do
+  context 'with GET info' do
     before { get '/info' }
 
     describe '#body' do
@@ -86,7 +86,7 @@ describe Heartcheck::App do
     end
   end
 
-  context 'on GET health_check' do
+  context 'with GET health_check' do
     before { get '/health_check' }
 
     describe '#body' do
@@ -102,7 +102,7 @@ describe Heartcheck::App do
     end
   end
 
-  context 'on GET other routes' do
+  context 'with GET other routes' do
     before { get '/lorem' }
 
     describe '#body' do

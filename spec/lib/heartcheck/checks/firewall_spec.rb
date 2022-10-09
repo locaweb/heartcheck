@@ -91,7 +91,7 @@ describe Heartcheck::Checks::Firewall do
         subject.validate
       end
 
-      context 'connection refused' do
+      context 'when getting connection is refused' do
         it 'avoid to adds errors array' do
           expect(Net::Telnet).to receive(:new).and_raise Errno::ECONNREFUSED.new
           subject.validate
@@ -100,7 +100,7 @@ describe Heartcheck::Checks::Firewall do
         end
       end
 
-      context 'timeout' do
+      context 'when running into a timeout' do
         let(:proxy_uri) { 'uriproxy.com.br:8888' }
         let(:error_msg) do
           "connection refused on: #{host}:443 using proxy: #{proxy_uri}"

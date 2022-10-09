@@ -8,14 +8,14 @@ describe Heartcheck::Checks::WatchFile do
   end
 
   describe '#validate' do
-    context 'the watched file as no modifications' do
+    context 'when the watched file as no modifications' do
       it 'array errors should be empty' do
         subject.validate
         expect(subject.instance_variable_get(:@errors)).to be_empty
       end
     end
 
-    context 'the watched file have new modifications' do
+    context 'when the watched file have new modifications' do
       it 'array erros should not be empty' do
         allow(subject).to receive(:installed).and_return({ bacon: true })
         expect { subject.validate }
