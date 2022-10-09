@@ -25,7 +25,8 @@ describe Heartcheck do
 
   describe '#format' do
     context 'with default' do
-      before(:each) { described_class.instance_variable_set :@formatter, nil }
+      before { described_class.instance_variable_set :@formatter, nil }
+
       it 'returns a Heartcheck::Formatters::Base' do
         described_class.setup do |monitor|
           expect(monitor.formatter).to be_a(Heartcheck::Formatters::Base)
@@ -34,7 +35,8 @@ describe Heartcheck do
     end
 
     context 'with hash formatter' do
-      before(:each) { described_class.instance_variable_set :@formatter, nil }
+      before { described_class.instance_variable_set :@formatter, nil }
+
       it 'returns a Heartcheck::Formatters::Base' do
         described_class.setup do |monitor|
           described_class.use_hash_formatter!
@@ -61,7 +63,7 @@ describe Heartcheck do
     end
 
     context 'with threaded' do
-      it 'returns a threaded  executor' do
+      it 'returns a threaded executor' do
         described_class.use_threaded_executor!
         expect(described_class.executor).to be_a(Heartcheck::Executors::Threaded)
       end
@@ -96,9 +98,8 @@ describe Heartcheck do
     subject(:add) { described_class.add(name, &blk) }
 
     let(:name) { :process }
-    let(:plugin) { Heartcheck::Checks::Process.new }
-
     let(:blk) { ->(_) {} }
+    let(:plugin) { Heartcheck::Checks::Process.new }
 
     before do
       allow(Heartcheck::Checks::Process).to receive(:new)
@@ -107,7 +108,7 @@ describe Heartcheck do
     end
 
     it 'returns the built instance' do
-      is_expected.to eq([plugin])
+      expect(subject).to eq([plugin])
     end
 
     it 'adds to context list' do
@@ -118,12 +119,14 @@ describe Heartcheck do
       )
     end
 
-    let(:blk) { ->(c) { c.this_is_terrible } }
+    context 'with code in the block argument' do
+      let(:blk) { ->(c) { c.this_is_terrible } }
 
-    it 'instantiates the class passing the given block' do
-      expect(plugin).to receive(:this_is_terrible)
+      it 'instantiates the class passing the given block' do
+        expect(plugin).to receive(:this_is_terrible)
 
-      add
+        add
+      end
     end
   end
 end

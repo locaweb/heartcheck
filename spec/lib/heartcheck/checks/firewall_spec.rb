@@ -40,7 +40,7 @@ describe Heartcheck::Checks::Firewall do
 
     context 'without proxy' do
       context 'with success' do
-        let(:telnet) { double(Net::Telnet, close: true) }
+        let(:telnet) { instance_double(Net::Telnet, close: true) }
         let(:params) { { 'Port' => 443, 'Host' => 'lala.com', 'Timeout' => 2 } }
 
         it 'calls Net::Telnet with valid params' do
@@ -50,7 +50,7 @@ describe Heartcheck::Checks::Firewall do
         end
       end
 
-      context 'with success' do
+      context 'without success' do
         before { allow(Net::Telnet).to receive(:new).and_raise(Timeout::Error.new) }
 
         it 'adds error message' do
@@ -72,15 +72,15 @@ describe Heartcheck::Checks::Firewall do
     end
 
     context 'with proxy' do
-      let(:host) { 'lala.com' }
-      let(:port) { 443 }
-      let(:proxy) { 'http://uriproxy.com.br:8888' }
-
       subject do
         described_class.new.tap do |c|
           c.add_service(port: port, host: host, proxy: proxy)
         end
       end
+
+      let(:host) { 'lala.com' }
+      let(:port) { 443 }
+      let(:proxy) { 'http://uriproxy.com.br:8888' }
 
       it 'calls Net::Telnet with valid params of proxy' do
         expect(Net::Telnet).to receive(:new).with('Port' => 8888, 'Host' => 'uriproxy.com.br',
@@ -91,7 +91,7 @@ describe Heartcheck::Checks::Firewall do
         subject.validate
       end
 
-      context 'connection refused' do
+      context 'when getting connection is refused' do
         it 'avoid to adds errors array' do
           expect(Net::Telnet).to receive(:new).and_raise Errno::ECONNREFUSED.new
           subject.validate
@@ -100,7 +100,7 @@ describe Heartcheck::Checks::Firewall do
         end
       end
 
-      context 'timeout' do
+      context 'when running into a timeout' do
         let(:proxy_uri) { 'uriproxy.com.br:8888' }
         let(:error_msg) do
           "connection refused on: #{host}:443 using proxy: #{proxy_uri}"

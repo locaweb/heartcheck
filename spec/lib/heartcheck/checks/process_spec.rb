@@ -3,8 +3,9 @@
 require 'spec_helper'
 
 describe Heartcheck::Checks::Process do
-  let(:opts) { { name: 'worker', file: 'spec/fixtures/files/worker.pid' } }
   subject    { described_class.new.tap { |c| c.add_service(opts) } }
+
+  let(:opts) { { name: 'worker', file: 'spec/fixtures/files/worker.pid' } }
 
   describe '#validate' do
     context 'with success' do

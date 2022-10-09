@@ -80,36 +80,40 @@ describe Heartcheck::Checks::Base do
   end
 
   describe '#functional?' do
-    context 'default is false' do
+    context 'when functional is not set' do
       describe '#functional?' do
         subject { super().functional? }
+
         it { is_expected.to be_falsey }
       end
     end
 
-    context 'can change value' do
+    context 'when functional is set to true' do
       before { base.functional = true }
 
       describe '#functional?' do
         subject { super().functional? }
+
         it { is_expected.to be_truthy }
       end
     end
   end
 
   describe '#dev?' do
-    context 'default is false' do
+    context 'when dev is not set' do
       describe '#dev?' do
         subject { super().dev? }
+
         it { is_expected.to be_falsey }
       end
     end
 
-    context 'can change value' do
+    context 'when dev is set to true' do
       before { base.dev = true }
 
       describe '#dev?' do
         subject { super().dev? }
+
         it { is_expected.to be_truthy }
       end
     end
@@ -120,6 +124,7 @@ describe Heartcheck::Checks::Base do
 
     context 'with success' do
       before { allow(subject).to receive(:validate) }
+
       it 'returns empty array' do
         expect(subject.check).to eq('base' => { 'status' => 'ok' })
       end
@@ -143,7 +148,7 @@ describe Heartcheck::Checks::Base do
         )
       end
 
-      it 'should not accumulate errors' do
+      it 'does not accumulate errors' do
         subject.check
         expect(subject.check).to eq(
           'base' => {
@@ -195,24 +200,23 @@ describe Heartcheck::Checks::Base do
 
     context 'without error' do
       let(:response) { { 'version' => '1234' } }
+
       before do
         allow(subject).to receive(:info).and_return(response)
       end
 
-      it 'should show a response' do
+      it 'shows a response' do
         expect(subject.informations).to eq(response)
       end
     end
   end
 
   describe '#uri_info' do
-    context 'for the base class' do
-      it 'returns a hash with an error message' do
-        expect(subject.uri_info).to include(:error)
-        expect(subject.uri_info).not_to include(:host)
-        expect(subject.uri_info).not_to include(:port)
-        expect(subject.uri_info).not_to include(:schema)
-      end
+    it 'returns a hash with an error message' do
+      expect(subject.uri_info).to include(:error)
+      expect(subject.uri_info).not_to include(:host)
+      expect(subject.uri_info).not_to include(:port)
+      expect(subject.uri_info).not_to include(:schema)
     end
   end
 end
