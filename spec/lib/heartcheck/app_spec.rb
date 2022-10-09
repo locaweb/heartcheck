@@ -6,8 +6,8 @@ require 'rack/test'
 describe Heartcheck::App do
   include Rack::Test::Methods
 
-  let(:app) { described_class.new }
   subject   { last_response }
+  let(:app) { described_class.new }
 
   describe '#body' do
     subject { super().body }

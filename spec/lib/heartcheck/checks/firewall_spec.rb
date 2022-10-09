@@ -72,15 +72,15 @@ describe Heartcheck::Checks::Firewall do
     end
 
     context 'with proxy' do
-      let(:host) { 'lala.com' }
-      let(:port) { 443 }
-      let(:proxy) { 'http://uriproxy.com.br:8888' }
-
       subject do
         described_class.new.tap do |c|
           c.add_service(port: port, host: host, proxy: proxy)
         end
       end
+      let(:host) { 'lala.com' }
+      let(:port) { 443 }
+      let(:proxy) { 'http://uriproxy.com.br:8888' }
+
 
       it 'calls Net::Telnet with valid params of proxy' do
         expect(Net::Telnet).to receive(:new).with('Port' => 8888, 'Host' => 'uriproxy.com.br',
