@@ -200,6 +200,7 @@ describe Heartcheck::Checks::Base do
 
     context 'without error' do
       let(:response) { { 'version' => '1234' } }
+
       before do
         allow(subject).to receive(:info).and_return(response)
       end

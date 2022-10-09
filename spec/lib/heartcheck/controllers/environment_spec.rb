@@ -27,6 +27,7 @@ module Heartcheck
           let(:system_info) do
             MultiJson.load(controller.index, symbolize_keys: true)[:system_info]
           end
+
           it 'gets info from the right constants and functions' do
             allow(Sys::Uname).to receive(:uname).and_return(system_info_example)
             expect(subject).to include(
