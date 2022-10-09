@@ -77,6 +77,7 @@ describe Heartcheck::Checks::Firewall do
           c.add_service(port: port, host: host, proxy: proxy)
         end
       end
+
       let(:host) { 'lala.com' }
       let(:port) { 443 }
       let(:proxy) { 'http://uriproxy.com.br:8888' }

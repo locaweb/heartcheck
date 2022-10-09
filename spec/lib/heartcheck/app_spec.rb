@@ -7,6 +7,7 @@ describe Heartcheck::App do
   include Rack::Test::Methods
 
   subject   { last_response }
+
   let(:app) { described_class.new }
 
   describe '#body' do
@@ -30,11 +31,13 @@ describe Heartcheck::App do
 
     describe '#body' do
       subject { super().body }
+
       it { is_expected.to eq('[]') }
     end
 
     describe '#status' do
       subject { super().status }
+
       it { is_expected.to eq(200) }
     end
   end
@@ -62,6 +65,7 @@ describe Heartcheck::App do
 
     describe '#status' do
       subject { super().status }
+
       it { is_expected.to eq(200) }
     end
   end
@@ -71,11 +75,13 @@ describe Heartcheck::App do
 
     describe '#body' do
       subject { super().body }
+
       it { is_expected.to eq('[]') }
     end
 
     describe '#status' do
       subject { super().status }
+
       it { is_expected.to eq(200) }
     end
   end
@@ -85,11 +91,13 @@ describe Heartcheck::App do
 
     describe '#body' do
       subject { super().body }
+
       it { is_expected.to eq(MultiJson.dump({ status: 'ok' })) }
     end
 
     describe '#status' do
       subject { super().status }
+
       it { is_expected.to eq(200) }
     end
   end
@@ -99,11 +107,13 @@ describe Heartcheck::App do
 
     describe '#body' do
       subject { super().body }
+
       it { is_expected.to eq('Not found') }
     end
 
     describe '#status' do
       subject { super().status }
+
       it { is_expected.to eq(404) }
     end
   end

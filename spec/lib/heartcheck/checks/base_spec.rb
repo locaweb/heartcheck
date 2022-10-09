@@ -83,6 +83,7 @@ describe Heartcheck::Checks::Base do
     context 'default is false' do
       describe '#functional?' do
         subject { super().functional? }
+
         it { is_expected.to be_falsey }
       end
     end
@@ -92,6 +93,7 @@ describe Heartcheck::Checks::Base do
 
       describe '#functional?' do
         subject { super().functional? }
+
         it { is_expected.to be_truthy }
       end
     end
@@ -101,6 +103,7 @@ describe Heartcheck::Checks::Base do
     context 'default is false' do
       describe '#dev?' do
         subject { super().dev? }
+
         it { is_expected.to be_falsey }
       end
     end
@@ -110,6 +113,7 @@ describe Heartcheck::Checks::Base do
 
       describe '#dev?' do
         subject { super().dev? }
+
         it { is_expected.to be_truthy }
       end
     end
