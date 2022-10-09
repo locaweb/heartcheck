@@ -108,7 +108,7 @@ describe Heartcheck do
     end
 
     it 'returns the built instance' do
-      is_expected.to eq([plugin])
+      expect(subject).to eq([plugin])
     end
 
     it 'adds to context list' do

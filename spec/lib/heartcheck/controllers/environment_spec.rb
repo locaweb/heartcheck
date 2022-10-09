@@ -20,7 +20,7 @@ module Heartcheck
 
           it 'gets info from the right constants and functions' do
             allow(Sys::Uname).to receive(:uname).and_return(system_info_example)
-            is_expected.to include(
+            expect(subject).to include(
               system_info: { example_key: 'example_value' },
               ruby_version: '2.4.0',
               rails_version: '5.0.0'
@@ -64,7 +64,7 @@ module Heartcheck
         context 'given Rails is not used' do
           it 'gets the info indicating Rails is not used' do
             allow(Sys::Uname).to receive(:uname).and_return(system_info_example)
-            is_expected.to include(
+            expect(subject).to include(
               system_info: { example_key: 'example_value' },
               ruby_version: '2.4.0',
               rails_version: '(none)'
