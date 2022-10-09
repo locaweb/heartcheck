@@ -28,9 +28,7 @@ module Heartcheck
         end
 
         it 'has a :time key in the checker response' do
-          subject.dispatch(checkers).each do |current|
-            expect(current).to include(:time)
-          end
+          expect(subject.dispatch(checkers)).to all(include(:time))
         end
 
         it 'has a float value (time key)' do
