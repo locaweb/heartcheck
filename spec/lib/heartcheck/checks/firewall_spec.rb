@@ -50,7 +50,7 @@ describe Heartcheck::Checks::Firewall do
         end
       end
 
-      context 'with success' do
+      context 'without success' do
         before { allow(Net::Telnet).to receive(:new).and_raise(Timeout::Error.new) }
 
         it 'adds error message' do
