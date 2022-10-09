@@ -120,6 +120,7 @@ describe Heartcheck::Checks::Base do
 
     context 'with success' do
       before { allow(subject).to receive(:validate) }
+
       it 'returns empty array' do
         expect(subject.check).to eq('base' => { 'status' => 'ok' })
       end
