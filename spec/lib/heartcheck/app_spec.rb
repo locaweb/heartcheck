@@ -55,6 +55,7 @@ describe Heartcheck::App do
     it 'has execution_time' do
       expect(subject.body).to match(/"execution_time":"([0-9]{1,2}).([0-9]{2}) ms"/)
     end
+
     it 'has total_execution_time' do
       expect(subject.body).to match(/"total_execution_time":"([0-9]{1,2}).([0-9]{2}) ms"/)
     end
