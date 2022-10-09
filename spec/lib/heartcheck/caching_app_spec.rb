@@ -9,8 +9,8 @@ module Heartcheck
 
     let(:app) { described_class.new(super_app, ttl, cache) }
     let(:ttl) { 5 }
-    let(:cache) { double(Heartcheck::CachingApp::Cache) }
-    let(:super_app) { double(Heartcheck::App) }
+    let(:cache) { instance_double(Heartcheck::CachingApp::Cache) }
+    let(:super_app) { instance_double(Heartcheck::App) }
     let(:controller) { Heartcheck::Controllers::Essential }
     let(:response) { [200, { 'Content-type' => 'application/json' }, ['[]']] }
 

@@ -40,7 +40,7 @@ describe Heartcheck::Checks::Firewall do
 
     context 'without proxy' do
       context 'with success' do
-        let(:telnet) { double(Net::Telnet, close: true) }
+        let(:telnet) { instance_double(Net::Telnet, close: true) }
         let(:params) { { 'Port' => 443, 'Host' => 'lala.com', 'Timeout' => 2 } }
 
         it 'calls Net::Telnet with valid params' do
