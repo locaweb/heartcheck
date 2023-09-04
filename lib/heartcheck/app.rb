@@ -64,7 +64,7 @@ module Heartcheck
       Logger.info "Start [#{controller}] from #{req.ip} at #{Time.now}"
 
       controller.new.index.tap do |_|
-        Logger.info "End [#{controller}]\n"
+        Logger.info "End [#{controller}]"
       end
     end
   end
