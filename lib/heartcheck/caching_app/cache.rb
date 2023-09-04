@@ -40,7 +40,7 @@ module Heartcheck
         proc do
           Logger.info("Start [#{controller}] for caching at #{Time.now}")
           @results[controller] = controller.new.index
-          Logger.info("End [#{controller}]\n")
+          Logger.info("End [#{controller}]")
         end
       end
 
