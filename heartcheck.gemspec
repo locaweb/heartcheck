@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'multi_json', '~> 1.0'
   spec.add_runtime_dependency 'net-telnet', '~> 0.1.1'
-  spec.add_runtime_dependency 'rack', '~> 2.2'
+  spec.add_runtime_dependency 'rack', '> 2.2', '< 4'
   spec.add_runtime_dependency 'sys-uname', '~> 1.0', '>= 1.0.3'
 
   spec.add_development_dependency 'concurrent-ruby', '~> 1.0.2'
